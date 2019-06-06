@@ -171,7 +171,12 @@ function onAddText(el, txt) {
     // renderCanvas();
 }
 
-function onChangePrefs(prefType, val) {
+function onChangePrefs(ev, prefType, val) {
+    if (prefType === 'fontFamily')  {
+        ev.preventDefault();
+        changeDropDownDisplay();
+    }
+    
     console.log('entered changeed prefs',prefType ,val);
     updatePrefs(prefType, val);
 }
@@ -183,4 +188,9 @@ function onChangeVerticalAlignment(direction) {
 
 function onDeleteLine() {
     console.log('entered delete line',currLine);
+}
+
+function changeDropDownDisplay() {
+    let elDropDown = document.querySelector('#fonts > div');
+    elDropDown.classList.toggle('hide');
 }

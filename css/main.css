@@ -2,6 +2,53 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'AbrilFatFace';
+    src: url('../fonts/AbrilFatface-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Alef';
+    src: url('../fonts/Alef-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'AlfaSlabOne';
+    src: url('../fonts/AlfaSlabOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Bangers';
+    src: url('../fonts/Bangers-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'KumarOneOutline';
+    src: url('../fonts/KumarOneOutline-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Monoton';
+    src: url('../fonts/Monoton-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Righteous';
+    src: url('../fonts/Righteous-Regular.ttf');
+}
+@font-face {
+    font-family: 'SecularOne';
+    src: url('../fonts/SecularOne-Regular.ttf');
+}
+@font-face {
+    font-family: 'SplecialElite';
+    src: url('../fonts/SpecialElite-Regular.ttf');
+}
+@font-face {
+    font-family: 'ZCOOLKuaile';
+    src: url('../fonts/ZCOOLKuaiLe-Regular.ttf');
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -111,10 +158,6 @@ li {
     border: 1px dotted lightcoral;
 }
 
-.hide {
-    display: none;
-}
-
 .editor {
     height: 100vh;
     width: 100vw;
@@ -145,6 +188,54 @@ li {
     flex-direction: column;
 }
 
+.AbrilFatFace {
+    font-family: 'AbrilFatFace';
+}
+
+.Alef {
+    font-family: 'Alef';
+}
+
+.AlfaSlabOne {
+    font-family: 'AlfaSlabOne';
+}
+
+.Bangers {
+    font-family: 'Bangers';
+}
+
+.KumarOneOutline {
+    font-family: 'KumarOneOutline';
+}
+
+.Monoton {
+    font-family: 'Monoton';
+}
+
+.Righteous {
+    font-family: 'Righteous';
+}
+
+.SecularOne {
+    font-family: 'SecularOne';
+}
+
+.SplecialElite {
+    font-family: 'SplecialElite';
+}
+
+.ZCOOLKuaile {
+    font-family: 'ZCOOLKuaile';
+}
+
+.dropdown-content {
+    background-color: white;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    transition: ease;
+}
+
 .meme {
     border: 3px solid black;
 }
@@ -165,4 +256,8 @@ li {
 
 .btn:hover {
     background-color: lightseagreen;
+}
+
+.hide {
+    display: none;
 }

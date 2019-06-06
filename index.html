@@ -52,28 +52,39 @@
                     <input onchange="onAddText(this, this.value)">
 
                     <label>font family</label>
-                    <input list="fonts" onchange="onChangePrefs('fontFamily', this.value)">
-                    <datalist id="fonts">
-
-                    </datalist>
-
+                    <div class="dropdown" id="fonts">
+                        <button onclick="openDropDown()" class="dropbtn">Font Family ↓</button>
+                        <div id="fonts" class="dropdown-content hide">
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"  class="AbrilFatFace">AbrilFatFace</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')" class="AlfaSlabOne">AlfaSlabOne</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')" class="Bangers">Bangers</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')" class="KumarOneOutline">KumarOneOutline</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')" class="Monoton">Monoton</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')" class="Righteous">Righteous</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')" class="SecularOne">SecularOne</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')" class="SplecialElite">SplecialElite</a>
+                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')" class="ZCOOLKuaile">ZCOOLKuaile</a>
+                        </div>
+                      </div>
+ 
                     <label>font color</label>
-                    <input type="color" onchange="onChangePrefs('fontFillColor', this.value)">
+                    <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
 
                     <label>font border color</label>
-                    <input type="color" onchange="onChangePrefs('fontStrokeColor', this.value)">
+                    <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
 
                     <label>font size</label>
-                    <input type="range" min="5" max="200" value="30" onchange="onChangePrefs('fontSize', this.value)">
+                    <input type="range" min="5" max="200" value="30" onchange="onChangePrefs(event,'fontSize', this.value)">
 
                     <div class="secondary-control">
                         <label>alignment</label>
                         <label>right</label>
-                        <input type="radio" name="alignment" value="right" onchange="onChangePrefs('horizontalAlignment', this.value)">
+                        <input type="radio" name="alignment" value="right" onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
                         <label>left</label>
-                        <input type="radio" name="alignment" value="left" onchange="onChangePrefs('horizontalAlignment', this.value)">
+                        <input type="radio" name="alignment" value="left" onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
                         <label>center</label>
-                        <input type="radio" name="alignment" value="center" onchange="onChangePrefs('horizontalAlignment', this.value)">
+                        <input type="radio" name="alignment" value="center" onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
                     </div>
 
                     <div class="secondary-control">
