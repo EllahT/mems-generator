@@ -48,61 +48,104 @@
                 <h2>control box</h2>
 
                 <div class="control-box">
-                    <label>enter text</label>
-                    <input onchange="onAddText(this, this.value)">
 
-                    <label>font family</label>
-                    <div class="dropdown" id="fonts">
-                        <button onclick="changeDropDownDisplay()" class="dropbtn">Font Family ↓</button>
-                        <div id="fonts" class="dropdown-content hide">
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"  class="AbrilFatFace">AbrilFatFace</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')" class="AlfaSlabOne">AlfaSlabOne</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')" class="Bangers">Bangers</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')" class="KumarOneOutline">KumarOneOutline</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')" class="Monoton">Monoton</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')" class="Righteous">Righteous</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')" class="SecularOne">SecularOne</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')" class="SplecialElite">SplecialElite</a>
-                          <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')" class="ZCOOLKuaile">ZCOOLKuaile</a>
+                    <div class="text ">
+                        <h3>enter text</h3>
+                        <div class="control-box-item">
+
+                        <input onchange="onAddText(this, this.value)">
                         </div>
-                      </div>
-
-                      <div class="secondary-control">
-                        <label>font style</label>
-                        <label>filled</label>
-                        <input type="radio" name="alignment" value="filled" onchange="onChangePrefs(event,'fontStyle', this.value)">
-                        <label>empty</label>
-                        <input type="radio" name="alignment" value="empty" onchange="onChangePrefs(event,'fontStyle', this.value)">
                     </div>
 
-                    <label>font color</label>
-                    <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
-
-                    <label>font border color</label>
-                    <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
-
-                    <label>font size</label>
-                    <input type="range" min="5" max="200" value="30" onchange="onChangePrefs(event,'fontSize', this.value)">
-
-                    <div class="secondary-control">
-                        <label>alignment</label>
-                        <label>right</label>
-                        <input type="radio" name="alignment" value="right" onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
-                        <label>left</label>
-                        <input type="radio" name="alignment" value="left" onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
-                        <label>center</label>
-                        <input type="radio" name="alignment" value="center" onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+                    <div class="font-style">
+                        <h3>font style</h3>
+                        <div class="control-box-item">
+                            <label>filled</label>
+                            <input type="radio" name="alignment" value="filled"
+                                onchange="onChangePrefs(event,'fontStyle', this.value)">
+                            <label>empty</label>
+                            <input type="radio" name="alignment" value="empty"
+                                onchange="onChangePrefs(event,'fontStyle', this.value)">
+                        </div>
                     </div>
 
-                    <div class="secondary-control">
-                        <label>Vertical alignment</label>
-                        <button class="btn" onclick="onChangeVerticalAlignment('up')">↑</button>
-                        <button class="btn" onclick="onChangeVerticalAlignment('down')">↓</button>
+                    <div class="font-color">
+                        <h3>font color</h3>
+                        <div class="control-box-item">
+                            <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
+                        </div>
                     </div>
 
-                    <button class="btn" onclick="onDeleteLine()">Delete line</button>
+                    <div class="font-border-color">
+                        <h3>font border color</h3>
+                        <div class="control-box-item">
+                            <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
+                        </div>
+                    </div>
 
+                    <div class="font-size">
+                        <h3>font size</h3>
+                        <div class="control-box-item">
+                            <input type="range" min="5" max="70" value="30"
+                                onchange="onChangePrefs(event,'fontSize', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="font-family control-box-item">
+                            <div class="dropdown" id="fonts">
+                                <h3 onclick="changeDropDownDisplay()" class="dropbtn">Font Family ↓</h3>
+                                <div class="dropdown-content hide">
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')"
+                                        class="impact">impact</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"
+                                        class="AbrilFatFace">AbrilFatFace</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')"
+                                        class="AlfaSlabOne">AlfaSlabOne</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')"
+                                        class="Bangers">Bangers</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')"
+                                        class="KumarOneOutline">KumarOneOutline</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')"
+                                        class="Monoton">Monoton</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')"
+                                        class="Righteous">Righteous</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')"
+                                        class="SecularOne">SecularOne</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')"
+                                        class="SplecialElite">SplecialElite</a>
+                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')"
+                                        class="ZCOOLKuaile">ZCOOLKuaile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="alignment">
+                        <h3>alignment</h3>
+                        <div class="control-box-item">
+                            <label>right</label>
+                            <input type="radio" name="alignment" value="right"
+                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+                            <label>left</label>
+                            <input type="radio" name="alignment" value="left"
+                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+                            <label>center</label>
+                            <input type="radio" name="alignment" value="center"
+                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+                        </div>
+                    </div>
+
+                    <div class="vertical-alignment">
+                        <h3>Vertical alignment</h3>
+                        <div class="vertical-alignment control-box-item">
+                            <button class="btn" onclick="onChangeVerticalAlignment('up')">↑</button>
+                            <button class="btn" onclick="onChangeVerticalAlignment('down')">↓</button>
+                        </div>
+                    </div>
+
+                    <div class="delete control-box-item">
+                        <button class="btn" onclick="onDeleteLine()">Delete line</button>
+                    </div>
                 </div>
             </div>
 

@@ -7,8 +7,8 @@ function init() {
     gCanvas = document.querySelector('.meme');
     gCtx = gCanvas.getContext('2d');
 
-    gCanvas.width = window.innerWidth / 2;
-    gCanvas.height = 300;
+    gCanvas.width = window.innerWidth / 1.5;
+    gCanvas.height = window.innerHeight / 2;
 
     createImages();
     initMeme();
@@ -80,8 +80,11 @@ function renderCanvas() {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 
     const texts = getMemeTexts();
+    
     if (texts.length > 0) {
-        texts.forEach(onAddText)
+        texts.forEach(function(text){
+            doAddText(text[fontStyle], text[fontFillColor], text[fontStrokeColor], text[fontSize], text[fontFamily], text[x], text[y], text[text])
+        })
     }
 }
 
@@ -176,7 +179,8 @@ function onAddText(el, txt) {
 function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt) {
     gCtx.fillStyle = currFontFillColor;
     gCtx.strokeStyle = currFontStrokeColor;
-    gCtx.font = currFontSize + ' ' + currFontFamily;
+    const str = currFontSize + 'px ' + currFontFamily;
+    gCtx.font = str;
 
     if (currFontStyle === 'filled') {
         gCtx.fillText(txt, x, y);

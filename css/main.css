@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+/* fonts */
+
+@font-face {
+    font-family: 'Titillium';
+    src: url('../fonts/TitilliumWeb-Light.ttf');
+}
+
 @font-face {
     font-family: 'AbrilFatFace';
     src: url('../fonts/AbrilFatface-Regular.ttf');
@@ -49,22 +56,27 @@
     src: url('../fonts/ZCOOLKuaiLe-Regular.ttf');
 }
 
+/* base */
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Titillium';
 }
 
-h1,h6 {
+h1 {
     text-align: center;
-    font-family: 'impact'
+    font-family: 'impact';
 }
 
 h6 {
+    text-align: center;
     font-weight: 100;
 }
 
 input {
+    margin: 5px;
     max-height: 2rem;
 }
 
@@ -91,6 +103,19 @@ li {
     margin: 10px;
 }
 
+.btn {    
+    padding: 10px;
+    background-color: lightskyblue;
+    border-radius: 10px;
+    max-width: 150px;
+}
+
+.btn:hover {
+    background-color: lightseagreen;
+}
+
+/* layout */
+
 .header, .footer {
     background-color: lightblue;
     max-height: 100px;
@@ -101,6 +126,11 @@ li {
     padding-top: 10px;
     text-align: center;
 }
+
+
+/* main */
+
+/* .gallery */
 
 .gallery {
     margin: 0 auto;
@@ -127,6 +157,8 @@ li {
     max-width: 100px;
     cursor: pointer;
 }
+
+/* gallery panels */
 
 .list-filter {
     margin: 10px;
@@ -158,6 +190,8 @@ li {
     border: 1px dotted lightcoral;
 }
 
+/* editor */
+
 .editor {
     height: 100vh;
     width: 100vw;
@@ -169,23 +203,50 @@ li {
     align-items: center;
 }
 
+.meme {
+    border: 3px solid black;
+}
+
+/* control box */
+
 .control-box-container {
     width: 100%;
-    height: 50%;
+    max-height: 50%;
     margin: 10px;
 }
 
 .control-box {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
     grid-template-rows: repeat(auto-fill, minmax(1rem, 1fr));
     grid-gap: 20px;
 }
 
-.secondary-control {
+.control-box-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.font-style > .control-box-item, .vertical-alignment > .control-box-item, .alignment > .control-box-item {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.dropdown-content {
+    position: absolute;
+    background-color: white;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    transition: ease;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content > a:hover {
+    color: #E91E63;
 }
 
 .AbrilFatFace {
@@ -228,34 +289,13 @@ li {
     font-family: 'ZCOOLKuaile';
 }
 
-.dropdown-content {
-    background-color: white;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    transition: ease;
-}
-
-.meme {
-    border: 3px solid black;
-}
+/* actions */
 
 .actions {
     list-style-type: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.btn {    
-    padding: 10px;
-    background-color: lightskyblue;
-    border-radius: 10px;
-    max-width: 150px;
-}
-
-.btn:hover {
-    background-color: lightseagreen;
 }
 
 .hide {

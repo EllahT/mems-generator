@@ -6,7 +6,6 @@ let gKeywords = {};
 
 let gImgs;
 
-
 let gPrefs = {
     fontStyle: 'filled',
     fontFillColor: 'white',
@@ -14,7 +13,7 @@ let gPrefs = {
     fontFamily: 'impact',
     fontSize: '30px',
     horizontalAlignment: 'left',
-    verticalAlignment: 50,
+    verticalAlignment: (window.innerHeight /3),
     currLine: 1
 }
 
@@ -25,12 +24,17 @@ let gMeme = {
 
 function createImages() {
     const images = [
-        createImage('sounds of music',1,['happy','free','fun','hils']),
-        createImage('trump',2,['politics','trump','man','america','big guy']),
-        createImage('cute dogs',3,['cute','peaceful','friendship','couples','night','good','dog','dogs','kisses','puppy']),
-        createImage('dog and baby',4,['cute','peaceful','friendship','bed','night','good','dog','baby','sleeping']),
-        createImage('success boy',5,['cute','funny','yay','baby','success','good']),
-        createImage('cat',6,['cute','bed','sleeping','cat','peaceful'])
+        createImage('Sounds of Music',1,['happy','free','fun','hils']),
+        createImage('Trump',2,['politics','trump','man','america','big guy','finger']),
+        createImage('Cute Dogs',3,['cute','peaceful','friendship','couples','night','good','dog','dogs','kisses','puppy']),
+        createImage('Dog and Baby',4,['cute','peaceful','friendship','bed','night','good','dog','baby','sleeping']),
+        createImage('Success Boy',5,['cute','funny','yay','baby','success','good','boy']),
+        createImage('Cat',6,['cute','bed','sleeping','cat','peaceful']),
+        createImage('Dancing Kids',7,['happy','dance','africa','celebration','boys','kids','boy','kid','together']),
+        createImage('Willy Wonka',8,['interesting','fascinated','man','hat','purple']),
+        createImage('Laughing Kid',9,['cute', 'kid', 'evil', 'plan', 'plotting','boy']),
+        createImage('Trump',10,['politics','trump','man','america','big guy','finger']),
+        createImage('History Channel Guy',11,['ploting','conspiracy','aliens','big hair','history']),
     ]
     
     gImgs = images;
