@@ -15,16 +15,16 @@
     </header>
 
     <main class="main">
-        <button class="show-gallery btn" onclick="onToggleGallery()" >Show/Hide Gallery</button>
-        
-        <section class="gallery">    
-            
+        <button class="show-gallery btn" onclick="onToggleGallery()">Show/Hide Gallery</button>
+
+        <section class="gallery">
+
             <div class="list-filter">
                 <lable>search by keyword</lable>
                 <input list="keywords" placeholder="dogs" onchange="filterBy(this.value)">
-                    <datalist id="keywords">
-                     
-                    </datalist>
+                <datalist id="keywords">
+
+                </datalist>
             </div>
 
             <div class="block-filter">
@@ -36,15 +36,55 @@
                 </div>
             </div>
 
+            <h2>click the image to add it as your meme background</h2>
             <div class="gallery-images-container">
-                
+
             </div>
 
         </section>
 
-        <section class="editor" id="#editor">
-            <div class="control-box">
+        <section class="editor">
+            <div class="control-box-container">
                 <h2>control box</h2>
+
+                <div class="control-box">
+                    <label>enter text</label>
+                    <input onchange="onAddText(this, this.value)">
+
+                    <label>font family</label>
+                    <input list="fonts" onchange="onChangePrefs('fontFamily', this.value)">
+                    <datalist id="fonts">
+
+                    </datalist>
+
+                    <label>font color</label>
+                    <input type="color" onchange="onChangePrefs('fontFillColor', this.value)">
+
+                    <label>font border color</label>
+                    <input type="color" onchange="onChangePrefs('fontStrokeColor', this.value)">
+
+                    <label>font size</label>
+                    <input type="range" min="5" max="200" value="30" onchange="onChangePrefs('fontSize', this.value)">
+
+                    <div class="secondary-control">
+                        <label>alignment</label>
+                        <label>right</label>
+                        <input type="radio" name="alignment" value="right" onchange="onChangePrefs('horizontalAlignment', this.value)">
+                        <label>left</label>
+                        <input type="radio" name="alignment" value="left" onchange="onChangePrefs('horizontalAlignment', this.value)">
+                        <label>center</label>
+                        <input type="radio" name="alignment" value="center" onchange="onChangePrefs('horizontalAlignment', this.value)">
+                    </div>
+
+                    <div class="secondary-control">
+                        <label>Vertical alignment</label>
+                        <button class="btn" onclick="onChangeVerticalAlignment('up')">↑</button>
+                        <button class="btn" onclick="onChangeVerticalAlignment('down')">↓</button>
+                    </div>
+
+                    <button class="btn" onclick="onDeleteLine()">Delete line</button>
+
+                </div>
             </div>
 
             <div class="canvas-container">
@@ -56,7 +96,7 @@
             <div class="actions-containor">
                 <ul class="actions">
                     <li class="btn downloadBtn">
-                        <a href="#" onclick="onDownload(this)"return=false; download="">Download</a>
+                        <a href="#" onclick="onDownload(this)" return=false; download="">Download</a>
                     </li>
 
                     <li>

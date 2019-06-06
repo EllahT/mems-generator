@@ -68,7 +68,8 @@ function onKeywordClick(ev,keyword) {
 function onImageClicked(imgId){
     updatePickedImage(imgId);
     renderCanvas();
-    onToggleGallery();
+    let elEditor = document.querySelector('.editor');
+    elEditor.scrollIntoView({alignToTop: true, behavior: "smooth"});
 }
 
 function renderCanvas() {
@@ -82,6 +83,8 @@ function renderCanvas() {
 function filterBy(keyword) {
     updateFilter(keyword);
     renderGallery();
+    let elGallery = document.querySelector('.gallery-images-container');
+    elGallery.scrollIntoView({alignToTop: true, behavior: "smooth"});
 }
 
 function onDownload(elLink) {
@@ -92,7 +95,7 @@ function onDownload(elLink) {
 }
 
 function onClear() {
-    gCtx.fillStyle = 'white';
+    gCtx.fillStyle = 'lightgreen';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
 }
 
@@ -133,10 +136,51 @@ function renderListFilter() {
     
     elList.innerHTML = strHtmls.join('');
 }
-// function drawText(txt,x,y) {
-    //     ctx.fillStyle = 'white'
-    //     ctx.strokeStyle = 'green'
-    //     ctx.font = "17px Arial";
-    //     // ctx.fillText(txt, x, y);
-    //     ctx.strokeText(txt, x, y);
-    // }
+
+function onAddText(el, txt) {
+    console.log(txt);
+    el.value = '';
+    
+    let currPrefsFontSize = gerCurrPrefs('fontSize');
+    gCtx.fillStyle = gerCurrPrefs('fontFillColor');
+    gCtx.strokeStyle = gerCurrPrefs('fontStrokeColor');
+    gCtx.font = gerCurrPrefs('fontSize')+' '+gerCurrPrefs('fontFamily');
+    
+    let currHorAlign = gerCurrPrefs('horizontalAlignment');
+    let x;
+    
+    switch (currHorAlign) {
+        case 'right':
+            x = gCanvas.width - (50+(txt.length)*13);
+            break;
+        
+        case 'left':
+            x = 50;
+            break;
+
+        case 'center':
+            x = gCanvas.width/2;
+            break;
+    }
+
+    let y = gerCurrPrefs('verticalAlignment');
+
+    console.log('x: ',x,'y: ',y)
+    gCtx.fillText(txt, x, y);
+    gCtx.strokeText(txt,x,y);
+    // renderCanvas();
+}
+
+function onChangePrefs(prefType, val) {
+    console.log('entered changeed prefs',prefType ,val);
+    updatePrefs(prefType, val);
+}
+
+function onChangeVerticalAlignment(direction) {
+    console.log('entered change ver align',direction);
+
+}
+
+function onDeleteLine() {
+    console.log('entered delete line',currLine);
+}

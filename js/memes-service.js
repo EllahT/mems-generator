@@ -6,6 +6,17 @@ let gKeywords = {};
 
 let gImgs;
 
+
+let gPrefs = {
+    fontFillColor: 'white',
+    fontStrokeColor: 'black',
+    fontFamily: 'impact',
+    fontSize: '30px',
+    horizontalAlignment: 'left',
+    verticalAlignment: 50,
+    currLine: 1
+}
+
 let gMeme = {
     selectedImgId: null,
     txts: [
@@ -44,6 +55,15 @@ function createImage(name,fileName,keywords) {
 
 function initMeme() {
     gMeme.selectedImgId = gImgs[0].id;
+    gPrefs = {
+        fontFillColor: 'white',
+        fontStrokeColor: 'black',
+        fontFamily: 'impact',
+        fontSize: '30px',
+        horizontalAlignment: 'left',
+        verticalAlignment: 50,
+        currLine: 1
+    }
 }
 
 function getKeywords() {
@@ -90,21 +110,28 @@ function getSelectedImageId() {
     return gMeme.selectedImgId;
 }
 
+function gerCurrPrefs(prefType) {
+    return gPrefs[prefType];
+}
+
+function updatePrefs(prefType, val) {
+    gPrefs[prefType] = val;
+}
 // control box
 // Optional set of controls: font family, font color, font size, L-R alignment, UpDown alignment arrows, delete line.
 // 4. “Add-Line” Button.
 // 5. “Download” Button/Link of the created Meme image
-// 6. First two lines shall be at the TOP and BOTTOM of canvas, further lines at the
-// center
-// 7. Line dragging is not a must and shall be implemented only in case you
-// implemented all above functions first
+// 6. First two lines shall be at the TOP and BOTTOM of canvas, further lines at the center
+// 7. Line dragging is not a must and shall be implemented only in case you implemented all above functions first
 
 
 // 1. Allow using an image from your computer
 // 2. Share on Facebook (use the sample code provided)
 // 3. Website theme: celeb-meme, politic-meme, ani-meme, kid-meme, mondealmeme
 // 4. Add props (sunglasses, hats, etc)
-// 5. Option to drag and drop captions & props
-// (also on mobile)
+// 5. Option to drag and drop captions & props (also on mobile)
 // 6. Use the new Web Share API to share your meme
 // 7. i18n for Hebrew 
+
+
+//mobile: download a bigger pic

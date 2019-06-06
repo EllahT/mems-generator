@@ -17,6 +17,10 @@ h6 {
     font-weight: 100;
 }
 
+input {
+    max-height: 2rem;
+}
+
 button {
     font-family: inherit;
     background-color: transparent;
@@ -68,6 +72,7 @@ li {
 }
 
 .image-container {
+    cursor: pointer;
     border: 1px solid black;
 }
 
@@ -111,18 +116,33 @@ li {
 }
 
 .editor {
+    height: 100vh;
+    width: 100vw;
     margin-top: 10px;
     background-color: lightgreen;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+}
+
+.control-box-container {
+    width: 100%;
+    height: 50%;
+    margin: 10px;
 }
 
 .control-box {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    background-color: aquamarine;
-    border-radius: 5px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    grid-template-rows: repeat(auto-fill, minmax(1rem, 1fr));
+    grid-gap: 20px;
+}
+
+.secondary-control {
+    display: flex;
+    flex-direction: column;
 }
 
 .meme {
@@ -140,6 +160,7 @@ li {
     padding: 10px;
     background-color: lightskyblue;
     border-radius: 10px;
+    max-width: 150px;
 }
 
 .btn:hover {
