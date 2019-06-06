@@ -105,8 +105,8 @@ function getSelectedImageId() {
     return gMeme.selectedImgId;
 }
 
-function gerCurrPrefs(prefType) {
-    return gPrefs[prefType];
+function getCurrPrefs(prefType = 'all') {
+    return (prefType === 'all')? gPrefs : gPrefs[prefType];
 }
 
 function updatePrefs(prefType, val) {
@@ -127,6 +127,10 @@ function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFont
     
     gMeme.txts.push(newText);
 
+}
+
+function getMemeTexts() {
+    return gMeme.txts;
 }
 // control box
 // Optional set of controls: font family, font color, font size, L-R alignment, UpDown alignment arrows, delete line.
