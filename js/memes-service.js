@@ -8,6 +8,7 @@ let gImgs;
 
 
 let gPrefs = {
+    fontStyle: 'filled',
     fontFillColor: 'white',
     fontStrokeColor: 'black',
     fontFamily: 'impact',
@@ -19,14 +20,7 @@ let gPrefs = {
 
 let gMeme = {
     selectedImgId: null,
-    txts: [
-        {
-        line: 'hello',
-        size: 20,
-        align: 'left',
-        color: 'red'
-        }
-        ]
+    txts: []
 }
 
 function createImages() {
@@ -56,6 +50,7 @@ function createImage(name,fileName,keywords) {
 function initMeme() {
     gMeme.selectedImgId = gImgs[0].id;
     gPrefs = {
+        fontStyle: 'filled',
         fontFillColor: 'white',
         fontStrokeColor: 'black',
         fontFamily: 'impact',
@@ -116,6 +111,22 @@ function gerCurrPrefs(prefType) {
 
 function updatePrefs(prefType, val) {
     gPrefs[prefType] = val;
+}
+
+function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,x,y,txt) {   
+    const newText = {
+        fontStyle: currFontStyle,
+        fontFillColor: currFontFillColor,
+        fontStrokeColor: currFontStrokeColor,
+        fontFamily: currFontFamily,
+        fontSize: currFontSize,
+        x: x,
+        y: y,
+        text: txt
+    }
+    
+    gMeme.txts.push(newText);
+
 }
 // control box
 // Optional set of controls: font family, font color, font size, L-R alignment, UpDown alignment arrows, delete line.

@@ -67,7 +67,15 @@
                           <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')" class="ZCOOLKuaile">ZCOOLKuaile</a>
                         </div>
                       </div>
- 
+
+                      <div class="secondary-control">
+                        <label>font style</label>
+                        <label>filled</label>
+                        <input type="radio" name="alignment" value="filled" onchange="onChangePrefs(event,'fontStyle', this.value)">
+                        <label>empty</label>
+                        <input type="radio" name="alignment" value="empty" onchange="onChangePrefs(event,'fontStyle', this.value)">
+                    </div>
+
                     <label>font color</label>
                     <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
 

@@ -138,15 +138,20 @@ function renderListFilter() {
 }
 
 function onAddText(el, txt) {
-    console.log(txt);
+    
     el.value = '';
-    
-    let currPrefsFontSize = gerCurrPrefs('fontSize');
-    gCtx.fillStyle = gerCurrPrefs('fontFillColor');
-    gCtx.strokeStyle = gerCurrPrefs('fontStrokeColor');
-    gCtx.font = gerCurrPrefs('fontSize')+' '+gerCurrPrefs('fontFamily');
-    
+
+    let currFontFillColor = gerCurrPrefs('fontFillColor');
+    let currFontStrokeColor = gerCurrPrefs('fontStrokeColor');
+    let currFontSize = gerCurrPrefs('fontSize');
+    let currFontFamily = gerCurrPrefs('fontFamily');
     let currHorAlign = gerCurrPrefs('horizontalAlignment');
+    let currFontStyle = gerCurrPrefs('fontStyle');
+    
+    gCtx.fillStyle = currFontFillColor;
+    gCtx.strokeStyle = currFontStrokeColor;
+    gCtx.font = currFontSize+' '+currFontFamily;
+    
     let x;
     
     switch (currHorAlign) {
@@ -165,10 +170,14 @@ function onAddText(el, txt) {
 
     let y = gerCurrPrefs('verticalAlignment');
 
-    console.log('x: ',x,'y: ',y)
-    gCtx.fillText(txt, x, y);
-    gCtx.strokeText(txt,x,y);
-    // renderCanvas();
+    if (currFontStyle === 'filled') {
+        gCtx.fillText(txt, x, y); 
+        gCtx.strokeText(txt,x,y);
+    } else {
+        gCtx.strokeText(txt,x,y);
+    }
+
+    updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,x,y,txt);
 }
 
 function onChangePrefs(ev, prefType, val) {
@@ -176,8 +185,7 @@ function onChangePrefs(ev, prefType, val) {
         ev.preventDefault();
         changeDropDownDisplay();
     }
-    
-    console.log('entered changeed prefs',prefType ,val);
+
     updatePrefs(prefType, val);
 }
 
