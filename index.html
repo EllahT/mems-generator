@@ -49,7 +49,7 @@
 
                 <div class="control-box">
 
-                    <div class="text ">
+                    <div class="text control-box-item-container">
                         <h3>enter text</h3>
                         <div class="control-box-item">
 
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="font-style">
+                    <div class="font-style control-box-item-container">
                         <h3>font style</h3>
                         <div class="control-box-item">
                             <label>filled</label>
@@ -69,21 +69,21 @@
                         </div>
                     </div>
 
-                    <div class="font-color">
+                    <div class="font-color control-box-item-container">
                         <h3>font color</h3>
                         <div class="control-box-item">
                             <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
                         </div>
                     </div>
 
-                    <div class="font-border-color">
+                    <div class="font-border-color control-box-item-container">
                         <h3>font border color</h3>
                         <div class="control-box-item">
                             <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
                         </div>
                     </div>
 
-                    <div class="font-size">
+                    <div class="font-size control-box-item-container">
                         <h3>font size</h3>
                         <div class="control-box-item">
                             <input type="range" min="5" max="70" value="30"
@@ -91,10 +91,10 @@
                         </div>
                     </div>
 
-                    <div class="font-family control-box-item">
-                            <div class="dropdown" id="fonts">
-                                <h3 onclick="changeDropDownDisplay()" class="dropbtn">Font Family ↓</h3>
-                                <div class="dropdown-content hide">
+                    <div class="font-family control-box-item-container">
+                            <div class="dropdown control-box-item" id="fonts">
+                                <h3 class="dropbtn">Font Family</h3>
+                                <div class="dropdown-content">
                                     <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')"
                                         class="impact">impact</a>
                                     <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"
@@ -120,7 +120,7 @@
                             </div>
                         </div>
 
-                    <div class="alignment">
+                    <div class="alignment control-box-item-container">
                         <h3>alignment</h3>
                         <div class="control-box-item">
                             <label>right</label>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
 
-                    <div class="vertical-alignment">
+                    <div class="vertical-alignment control-box-item-container">
                         <h3>Vertical alignment</h3>
                         <div class="vertical-alignment control-box-item">
                             <button class="btn" onclick="onChangeVerticalAlignment('up')">↑</button>
@@ -143,8 +143,8 @@
                         </div>
                     </div>
 
-                    <div class="delete control-box-item">
-                        <button class="btn" onclick="onDeleteLine()">Delete line</button>
+                    <div class="delete control-box-item-container">
+                        <button class="btn control-box-item" onclick="onDeleteLine()">Delete line</button>
                     </div>
                 </div>
             </div>

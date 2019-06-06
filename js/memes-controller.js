@@ -125,7 +125,7 @@ function renderBlockFilter() {
 
     let strHtmls = keywordsArr.map(function (keyword) {
 
-        return `<button class="filter-item" style="font-size:${keyword[1] * 1}rem" onclick="onKeywordClick(event,'${keyword[0]}')">${keyword[0]}</button>`
+        return `<button class="filter-item" style="font-size:${keyword[1] * 0.8}rem" onclick="onKeywordClick(event,'${keyword[0]}')">${keyword[0]}</button>`
     })
 
     elList.innerHTML = strHtmls.join('');
