@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1,h6 {
+    text-align: center;
+    font-family: 'impact'
+}
+
+h6 {
+    font-weight: 100;
+}
+
+button {
+    font-family: inherit;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    border: 0;
+    cursor: pointer;
+}
+
+button:active, button:focus {
+    outline: none;
+}
+
+a, a:visited, a:active {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    margin: 10px;
+}
+
+.header, .footer {
+    background-color: lightblue;
+    max-height: 100px;
+    margin: 10px 0;
+}
+
+.main {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.gallery {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-images-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+    grid-gap: 10px;
+}
+
+.image-container {
+    border: 1px solid black;
+}
+
+.image-container > img {
+    max-width: 100px;
+    cursor: pointer;
+}
+
+.list-filter {
+    margin: 10px;
+    width: 50%;
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+
+.block-filter {
+    margin: 10px;
+    width: 100%;
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+
+.filter-item {    
+    margin: 5px;
+    padding: 10px;
+}
+
+.tags-container {
+    margin: 10px;
+    border: 1px solid black;
+}
+
+.keyword {
+    margin: 10px;
+    background-color: transparent;
+    border: 1px dotted lightcoral;
+}
+
+.hide {
+    display: none;
+}
+
+.editor {
+    margin-top: 10px;
+    background-color: lightgreen;
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-box {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+
+.meme {
+    border: 3px solid black;
+}
+
+.actions {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {    
+    padding: 10px;
+    background-color: lightskyblue;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background-color: lightseagreen;
+}
