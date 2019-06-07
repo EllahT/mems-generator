@@ -68,7 +68,6 @@ function deleteLine(line) {
 function isThereLine(line) {
     const lineIdx = findIdxbyLine(line);
     return (lineIdx !== -1);
-    
 }
 
 function findIdxbyLine(line) {
@@ -76,10 +75,16 @@ function findIdxbyLine(line) {
         return text.line === line;
     })
 }
-// 6. First two lines shall be at the TOP and BOTTOM of canvas, further lines at the center
+
+
+// TODO: write vertical alignment function
+// TODO: fix mobile -> download a bigger pic
+// TODO: do edit existing line 
+
+
 // 7. Line dragging is not a must and shall be implemented only in case you implemented all above functions first
 
-
+//BONUSE:
 // 1. Allow using an image from your computer
 // 2. Share on Facebook (use the sample code provided)
 // 3. Website theme: celeb-meme, politic-meme, ani-meme, kid-meme, mondealmeme
@@ -89,4 +94,3 @@ function findIdxbyLine(line) {
 // 7. i18n for Hebrew 
 
 
-//mobile: download a bigger pic

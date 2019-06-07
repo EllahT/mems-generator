@@ -73,17 +73,16 @@ function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFo
 }
 
 function onChangePrefs(ev, prefType, val) {
-    if (prefType === 'fontFamily') {
-        ev.preventDefault();
-        onChangeDropDownDisplay();
-    }
-
+    ev.preventDefault();
+    const elPicked = document.querySelector('.'+prefType);
+    elPicked.innerText = val;
+    
     updatePrefs(prefType, val);
 }
 
-function onChangeVerticalAlignment(direction) {
+function onChangeVerticalAlignment(ev, direction) {
+    ev.preventDefault();
     console.log('entered change ver align', direction);
-
 }
 
 function onAddLine() {

@@ -14,8 +14,3 @@ function init() {
     renderCanvas();
     onClear();
 }
-
-function onToggleHide(className) {
-    const el = document.querySelector(className);
-    el.classList.toggle('hide');
-}

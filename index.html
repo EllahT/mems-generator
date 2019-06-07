@@ -21,40 +21,34 @@
             <div class="gallery-tool-box">
 
                 <div class="images-tool-box">
-                    <button class="btn" onclick="onToggleGallery()"><img class="btn-img" src="img/icons/shrink.png"
-                            alt="Show/Hide Gallery" id="gallery-display-changer"></button>
-                    <button class="btn" onclick="onChangeGalleryStyle('list')"><img class="btn-img"
-                            src="img/icons/image-list.png" alt="Image List"></button>
-                    <button class="btn" onclick="onChangeGalleryStyle('grid')"><img class="btn-img"
-                            src="img/icons/gallery.png" alt="Gallery"></button>
+                    <button class="btn" onclick="onToggleGallery()" title="show/hide gallery"><img class="btn-img" src="img/icons/shrink.png" alt="Show/Hide Gallery" id="gallery-display-changer"></button>
+                    <button class="btn" onclick="onChangeGalleryStyle('list')" title="show gallery as list"><img class="btn-img" src="img/icons/image-list.png" alt="Image List"></button>
+                    <button class="btn" onclick="onChangeGalleryStyle('grid')" title="show gallery as grid"><img class="btn-img" src="img/icons/gallery.png" alt="Gallery"></button>
                 </div>
 
                 <div class="list-filter">
                     <input list="keywords" placeholder="search by keyword" onchange="filterBy(this.value)">
-                    <button onchange="filterBy(this.value)"><img class="btn-img" src="img/icons/search.png"
-                            alt="search by keyword" class="filter-image"></button>
+                    <button onchange="filterBy(this.value)" title="filter by keyword"><img class="btn-img" src="img/icons/search.png" alt="search by keyword" class="filter-image"></button>
                     <datalist id="keywords">
 
                     </datalist>
                 </div>
 
                 <div class="filter-tool-box">
-                    <button class="btn" onclick="filterBy('all')"><img class="btn-img" src="img/icons/unfilter.png"
-                            alt="Show All"></button>
-                    <button class="btn" onclick="onToggleHide('block-filter')"><img class="btn-img"
-                            src="img/icons/filter.png" alt="Filter by Popular Keywords"></button>
+                    <button class="btn" onclick="filterBy('all')" title="show all"><img class="btn-img" src="img/icons/unfilter.png" alt="Show All"></button>
+                    <button class="btn" onclick="onToggleHide('block-filter')" title="show/hide filter by keywords"><img class="btn-img" src="img/icons/filter.png" alt="Filter by Popular Keywords"></button>
                 </div>
 
             </div>
 
-            <div class="block-filter hide">
+            <div class="block-filter">
 
                 <div class="tags-container">
 
                 </div>
             </div>
 
-            <div class="gallery-images-container grid hide">
+            <div class="gallery-images-container grid">
 
             </div>
 
@@ -68,8 +62,7 @@
                     <div class="input-line first-line">
                         <h3>enter text for the first line</h3>
                         <input onchange="onAddText(1,this, this.value)">
-                        <button class="btn" onclick="onDeleteLine(1)"><img class="btn-img"
-                                src="img/icons/delete-line.png" alt="Delete line"></button>
+                        <button class="btn" onclick="onDeleteLine(1)" title="delete line"><img class="btn-img" src="img/icons/delete-line.png" alt="Delete line"></button>
                     </div>
                     <div class="text-lines hide">
 
@@ -78,16 +71,25 @@
                     <div class="input-line last-line hide">
                         <h3>enter text for the last line</h3>
                         <input onchange="onAddText(9,this, this.value)">
-                        <button class="btn" onclick="onDeleteLine(9)"><img class="btn-img"
-                                src="img/icons/delete-line.png" alt="Delete line"></button>
+                        <button class="btn" onclick="onDeleteLine(9)" title="delete line"><img class="btn-img" src="img/icons/delete-line.png" alt="Delete line"></button>
                     </div>
-
                 </div>
 
-                <button onclick="onToggleHide('control-box')" class="btn"><img class="btn-img"
-                        src="img/icons/settings.png" alt="show/hide control box"></button>
-                <button onclick="onAddLine()" class="btn"><img class="btn-img" src="img/icons/add-line.png"
-                        alt="add line"></button>
+                <button onclick="onToggleHide('control-box')" class="btn" title="show/hide control box"><img class="btn-img" src="img/icons/settings.png" alt="show/hide control box"></button>
+                <button onclick="onAddLine()" class="btn" title="add line"><img class="btn-img" src="img/icons/add-line.png" alt="add line"></button>
+                
+                <div>
+                    <ul class="prefs-list">
+                        <li>Font Style <span class="picked fontStyle">Filled</span></li>
+                        <li>Font Color <span class="picked fontFillColor">White</span></li>
+                        <li>Font Border Color <span class="picked fontStrokeColor">Black</span></li>
+                        <li>Font Family <span class="picked fontFamily">Impact</span></li>
+                        <li>Font Size <span class="picked fontSize">50px</span></li>
+                        <li>Horizontal Alignment (out of 10) <span class="picked horizontalAlignment">1</span></li>
+                        <li>Vertical Alignment (out of 6) <span class="picked verticalAlignment">2</span></li>
+                    </ul>
+
+                </div>
 
                 <div class="control-box">
 
@@ -101,8 +103,8 @@
                                 <img class="btn-img" src="img/icons/style.png">
                             </div>
                             <div class="dropdown-content dropdown-style hide">
-                                <a href="#" onclick="onChangePrefs(event, 'fontstyle', 'filled')"><img class="btn-img" src="img/icons/filled.png" alt="filled"></a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontstyle', 'empty')"><img class="btn-img" src="img/icons/empty.png" alt="empty"></a>
+                                <a href="#" onclick="onChangePrefs(event,'fontStyle','filled')"><img class="btn-img" src="img/icons/filled.png" alt="filled"></a>
+                                <a href="#" onclick="onChangePrefs(event,'fontStyle','empty')"><img class="btn-img" src="img/icons/empty.png" alt="empty"></a>
                             </div>
                         </div>
 
@@ -184,8 +186,8 @@
                                 <img class="btn-img" src="img/icons/vertical-align.png">
                             </div>
                             <div class="dropdown-content dropdown-vertical-alignment hide">
-                                <a href="#" onclick="onChangeVerticalAlignment('+')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
-                                <a href="#" onclick="onChangeVerticalAlignment('-')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
+                                <a href="#" onclick="onChangeVerticalAlignment(event,'+')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
+                                <a href="#" onclick="onChangeVerticalAlignment(event,'-')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
                             </div>
                         </div>
                     </div>
@@ -200,18 +202,11 @@
             </div>
 
             <div class="actions-containor">
-                <ul class="actions">
-                    <li class="btn downloadBtn">
-                        <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btn-img"
-                                src="img/icons/download.png" alt="Download"></a>
-                    </li>
-
-                    <li>
-                        <button class="btn clearBtn" onclick="onClear(this)"><img class="btn-img"
-                                src="img/icons/delete.png" alt="Clear Canvas"></button>
-                    </li>
-                </ul>
-
+                    <button class="btn">
+                        <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btn-img" src="img/icons/download.png" alt="Download"></a>
+                    </button>
+                    
+                    <button class="btn" onclick="onClear(this)"><img class="btn-img" src="img/icons/delete.png" alt="Clear Canvas"></button>
             </div>
         </section>
 
