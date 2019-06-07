@@ -15,7 +15,7 @@ function init() {
     onClear();
 }
 
-function onToggleHide(theClass) {
-    const el = document.querySelector(theClass);
+function onToggleHide(className) {
+    const el = document.querySelector(className);
     el.classList.toggle('hide');
 }

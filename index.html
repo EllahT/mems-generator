@@ -20,33 +20,40 @@
             <h2>Image Picker</h2>
             <div class="gallery-tool-box">
 
-                <button class="btn" onclick="onToggleGallery()"><img class="btnImg" src="img/icons/shrink.png"
-                        alt="Show/Hide Gallery" id="gallery-display-changer"></button>
-                <button class="btn" onclick="onChangeGalleryStyle('list')"><img class="btnImg" src="img/icons/image-list.png"
-                        alt="Image List"></button>
-                <button class="btn" onclick="onChangeGalleryStyle('grid')"><img class="btnImg" src="img/icons/gallery.png"
-                        alt="Gallery"></button>
+                <div class="images-tool-box">
+                    <button class="btn" onclick="onToggleGallery()"><img class="btnImg" src="img/icons/shrink.png"
+                            alt="Show/Hide Gallery" id="gallery-display-changer"></button>
+                    <button class="btn" onclick="onChangeGalleryStyle('list')"><img class="btnImg"
+                            src="img/icons/image-list.png" alt="Image List"></button>
+                    <button class="btn" onclick="onChangeGalleryStyle('grid')"><img class="btnImg"
+                            src="img/icons/gallery.png" alt="Gallery"></button>
+                </div>
 
                 <div class="list-filter">
-                    <input list="keywords" placeholder="dogs" onchange="filterBy(this.value)">
-                    <button onchange="filterBy(this.value)"><img class="btnImg" src="img/icons/search.png" alt="search by keyword"
-                            class="filter-image"></button>
+                    <input list="keywords" placeholder="search by keyword" onchange="filterBy(this.value)">
+                    <button onchange="filterBy(this.value)"><img class="btnImg" src="img/icons/search.png"
+                            alt="search by keyword" class="filter-image"></button>
                     <datalist id="keywords">
 
                     </datalist>
                 </div>
 
-                <button class="btn" onclick="filterBy('all')"><img class="btnImg" src="img/icons/unfilter.png" alt="Show All"></button>
-                <button class="btn" onclick="onToggleHide('.block-filter')"><img class="btnImg" src="img/icons/filter.png"
-                        alt="Filter by Popular Keywords"></button>
+                <div class="filter-tool-box">
+                    <button class="btn" onclick="filterBy('all')"><img class="btnImg" src="img/icons/unfilter.png"
+                            alt="Show All"></button>
+                    <button class="btn" onclick="onToggleHide('.block-filter')"><img class="btnImg"
+                            src="img/icons/filter.png" alt="Filter by Popular Keywords"></button>
+                </div>
 
-                <div class="block-filter hide">
+            </div>
 
-                    <div class="tags-container">
+            <div class="block-filter hide">
 
-                    </div>
+                <div class="tags-container">
+
                 </div>
             </div>
+
             <div class="gallery-images-container grid hide">
 
             </div>
@@ -57,12 +64,27 @@
             <div class="control-box-container">
                 <h2>control box</h2>
 
-                <div class="text-container">
-                    <h3>enter text</h3>
-                    <input onchange="onAddText(this, this.value)">
+                <div class="texts-container">
+                    <div class="first-line">
+                        <h3>enter text for the first line</h3>
+                        <input onchange="onAddText(1,this, this.value)">
+                        <button class="btn" onclick="onDeleteLine(1)">Delete line</button>
+                    </div>
+                    <div class="text-lines hide">
+
+                    </div>
+
+                    <div class="last-line hide">
+                        <h3>enter text for the last line</h3>
+                        <input onchange="onAddText(9,this, this.value)">
+                        <button class="btn" onclick="onDeleteLine(9)">Delete line</button>
+                    </div>
+
                 </div>
 
-                <button onclick="onToggleHide('.control-box')" class="btn"><img class="btnImg" src="img/icons/settings.png" alt="show/hide control box"></button>
+                <button onclick="onToggleHide('.control-box')" class="btn"><img class="btnImg"
+                        src="img/icons/settings.png" alt="show/hide control box"></button>
+                <button onclick="onAddLine()" class="btn"><img src="img/icons/add-line.png" alt="add line"></button>
 
                 <div class="control-box hide">
 
@@ -133,14 +155,15 @@
                         <h3>alignment</h3>
                         <div class="control-box-item">
                             <label>right</label>
-                            <input type="radio" name="alignment" value="right"
-                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
-                            <label>left</label>
-                            <input type="radio" name="alignment" value="left"
+                            <input type="radio" name="alignment" value="5"
                                 onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
                             <label>center</label>
-                            <input type="radio" name="alignment" value="center"
+                            <input type="radio" name="alignment" value="3"
                                 onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+                            <label>left</label>
+                            <input type="radio" name="alignment" value="1"
+                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+
                         </div>
                     </div>
 
@@ -150,10 +173,6 @@
                             <button class="btn" onclick="onChangeVerticalAlignment('up')">↑</button>
                             <button class="btn" onclick="onChangeVerticalAlignment('down')">↓</button>
                         </div>
-                    </div>
-
-                    <div class="delete control-box-item-container">
-                        <button class="btn control-box-item" onclick="onDeleteLine()">Delete line</button>
                     </div>
                 </div>
             </div>
@@ -172,8 +191,8 @@
                     </li>
 
                     <li>
-                        <button class="btn clearBtn" onclick="onClear(this)"><img class="btnImg" src="img/icons/delete.png"
-                                alt="Clear Canvas"></button>
+                        <button class="btn clearBtn" onclick="onClear(this)"><img class="btnImg"
+                                src="img/icons/delete.png" alt="Clear Canvas"></button>
                     </li>
                 </ul>
 

@@ -5,6 +5,7 @@ let gCtx;
 
 function renderCanvas() {
     const imgId = getSelectedImageId();
+    
     const imgClass = 'img.img-' + imgId;
     const img = document.querySelector(imgClass);
 
@@ -14,7 +15,7 @@ function renderCanvas() {
     
     if (texts.length > 0) {
         texts.forEach(function(text){
-            doAddText(text[fontStyle], text[fontFillColor], text[fontStrokeColor], text[fontSize], text[fontFamily], text[x], text[y], text[text])
+            doAddText(text.fontStyle, text.fontFillColor, text.fontStrokeColor, text.fontSize, text.fontFamily, text.x, text.y, text.text)
         })
     }
 }
@@ -29,10 +30,17 @@ function onDownload(elLink) {
 function onClear() {
     gCtx.fillStyle = 'white';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
+    initMeme();
 }
 
-function onAddText(el, txt) {
+function onAddText(line, el, txt) {
     el.value = '';
+
+    if (isThereLine(line)) {
+        if (confirm('there is a line a that spot, do you want to switch them?')) {
+            onDeleteLine(line)
+        }else return;
+    }
 
     let currFontFillColor = getCurrPrefs('fontFillColor');
     let currFontStrokeColor = getCurrPrefs('fontStrokeColor');
@@ -40,26 +48,13 @@ function onAddText(el, txt) {
     let currFontFamily = getCurrPrefs('fontFamily');
     let currFontStyle = getCurrPrefs('fontStyle');
     let currHorAlign = getCurrPrefs('horizontalAlignment');
-    let x;
+    
+    let x = ((gCanvas.width/6)*currHorAlign);
 
-    switch (currHorAlign) {
-        case 'right':
-            x = gCanvas.width - (50 + (txt.length) * 13);
-            break;
-
-        case 'left':
-            x = 50;
-            break;
-
-        case 'center':
-            x = gCanvas.width / 2;
-            break;
-    }
-
-    let y = getCurrPrefs('verticalAlignment');
+    let y = (gCanvas.height/10)*line;
 
     doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt);
-    updateMeme(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt);
+    updateMeme(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt, line);
 }
 
 function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt) {
@@ -91,11 +86,23 @@ function onChangeVerticalAlignment(direction) {
 
 }
 
-function onDeleteLine() {
-    console.log('entered delete line', currLine);
+function onAddLine() {
+    let currLines = getCurrLines();
+
+    if (currLines < 2) {
+        onRemoveClassToEl('last-line','hide');
+
+    } else {
+        doAddLine();
+    }
 }
 
-// function onChangeDropDownDisplay() {
-//     let elDropDown = document.querySelector('#fonts > div');
-//     elDropDown.classList.toggle('hide');
-// }
+function doAddLine() {
+    const currLines = getCurrLines();
+    const elContainer = document.querySelector('.text-lines');
+}
+
+function onDeleteLine(line) {
+    deleteLine(line);
+    renderCanvas();
+}

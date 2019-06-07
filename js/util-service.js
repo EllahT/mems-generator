@@ -18,3 +18,13 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
+
+function onAddClassToEl(className,newClass) {
+    const el = document.querySelector('.'+className);
+    el.classList.add(newClass);
+}
+
+function onRemoveClassToEl(className,removedClass) {
+    const el = document.querySelector('.'+className);
+    el.classList.remove(removedClass);
+}

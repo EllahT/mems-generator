@@ -167,10 +167,32 @@ li {
 /* gallery panels */
 
 .gallery-tool-box {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     justify-content: center;
     align-items: center;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+    "image-tool-box"
+    "list-filter"
+    "filter-tool-box"
+}
+
+.images-tool-box {
+    grid-area: image-tool-box;
+}
+
+.filter-tool-box {
+    grid-area: filter-tool-box;
+}
+
+@media (min-width: 520px) {
+    .gallery-tool-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }   
 }
 
 .list-filter {
@@ -180,6 +202,7 @@ li {
     height: 50px;
     padding: 5px;
     display: flex;
+    grid-area: list-filter;
 }
 
 .filter-image {
@@ -272,7 +295,7 @@ li {
     max-height: 200px;
     justify-content: flex-start;
     align-items: center;
-    background-color: #d5f5ff;
+    background-color: #d5f5ff75;
 }
 
 .gallery-images-container.image-list > .image-card > .image-name {

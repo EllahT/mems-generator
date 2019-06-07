@@ -1,32 +1,22 @@
 'use strict'
 
-let gPrefs = {
-    fontStyle: 'filled',
-    fontFillColor: 'white',
-    fontStrokeColor: 'black',
-    fontFamily: 'impact',
-    fontSize: '50',
-    horizontalAlignment: 'left',
-    verticalAlignment: (window.innerHeight /3),
-    currLine: 1
-}
+let gPrefs;
 
-let gMeme = {
-    selectedImgId: null,
-    txts: []
-}
+let gMeme;
 
 function initMeme() {
-    gMeme.selectedImgId = gImgs[0].id;
+    gMeme = {
+        selectedImgId: gImgs[0].id,
+        txts: []
+    }
     gPrefs = {
         fontStyle: 'filled',
         fontFillColor: 'white',
         fontStrokeColor: 'black',
         fontFamily: 'impact',
         fontSize: '50',
-        horizontalAlignment: 'left',
-        verticalAlignment: 50,
-        currLine: 1
+        horizontalAlignment: 1,
+        verticalAlignment: 2
     }
 }
 
@@ -46,7 +36,7 @@ function updatePrefs(prefType, val) {
     gPrefs[prefType] = val;
 }
 
-function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,x,y,txt) {   
+function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,x,y,txt,line) {   
     const newText = {
         fontStyle: currFontStyle,
         fontFillColor: currFontFillColor,
@@ -55,20 +45,37 @@ function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFont
         fontSize: currFontSize,
         x: x,
         y: y,
-        text: txt
+        text: txt,
+        line: line
     }
     
     gMeme.txts.push(newText);
+}
 
+function getCurrLines() {
+    return gMeme.txts.length;
 }
 
 function getMemeTexts() {
     return gMeme.txts;
 }
-// control box
-// Optional set of controls: font family, font color, font size, L-R alignment, UpDown alignment arrows, delete line.
-// 4. “Add-Line” Button.
-// 5. “Download” Button/Link of the created Meme image
+
+function deleteLine(line) {
+    const lineIdx = findIdxbyLine(line);
+    gMeme.txts.splice(lineIdx,1);    
+}
+
+function isThereLine(line) {
+    const lineIdx = findIdxbyLine(line);
+    return (lineIdx !== -1);
+    
+}
+
+function findIdxbyLine(line) {
+    return gMeme.txts.findIndex(function(text) {
+        return text.line === line;
+    })
+}
 // 6. First two lines shall be at the TOP and BOTTOM of canvas, further lines at the center
 // 7. Line dragging is not a must and shall be implemented only in case you implemented all above functions first
 
