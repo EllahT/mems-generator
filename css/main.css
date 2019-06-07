@@ -59,15 +59,21 @@
 /* base */
 
 body {
+    font-family: 'Titillium';
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: 'Titillium';
+    align-content: space-between;
+    margin: 0;
 }
 
 h1 {
     text-align: center;
     font-family: 'impact';
+}
+
+h2 {
+    margin: 0;
 }
 
 h3 {
@@ -80,8 +86,7 @@ h6 {
 }
 
 input {
-    margin: 5px;
-    max-height: 2rem;
+    height: 100%;
 }
 
 button {
@@ -108,19 +113,28 @@ li {
 }
 
 .btn {    
-    padding: 10px;
     background-color: lightskyblue;
     border-radius: 10px;
-    max-width: 150px;
+    box-shadow: 2px 2px 6px 2px #205263;
+    padding: 5px;
+    max-height: max-content;
+    margin: 5px;
 }
 
 .btn:hover {
     background-color: lightseagreen;
+    box-shadow: 2px 2px 6px 2px #296763;
+
+}
+
+.btn > img {
+    width: 30px;
+    height: 30px;
 }
 
 /* layout */
 
-.header, .footer {
+.header {
     background-color: lightblue;
     max-height: 100px;
     margin: 10px 0;
@@ -129,6 +143,12 @@ li {
 .main {
     padding-top: 10px;
     text-align: center;
+}
+
+.footer {
+    background-color: lightblue;
+    max-height: 100px;
+    margin: 10px 0;
 }
 
 /* main */
@@ -143,31 +163,28 @@ li {
     align-items: center;
 }
 
-.gallery-images-container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
-    grid-gap: 10px;
-}
-
-.image-container {
-    cursor: pointer;
-    border: 1px solid black;
-}
-
-.image-container > img {
-    max-width: 100px;
-    cursor: pointer;
-}
-
 /* gallery panels */
+
+.gallery-tool-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
 .list-filter {
     margin: 10px;
-    width: 50%;
     background-color: #e91e634d;
     border-radius: 5px;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+}
+
+.filter-image {
+    max-width: 30px;
+    max-height: 30px;
+    margin: auto;
 }
 
 .block-filter {
@@ -190,6 +207,26 @@ li {
     margin: 10px;
     background-color: transparent;
     border: 1px dotted lightcoral;
+}
+
+/* actual gallery  */
+
+.gallery-images-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr));
+    grid-gap: 10px;
+}
+
+.image-container {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.image-container > img {
+    max-width: 100px;
+    cursor: pointer;
 }
 
 /* editor */

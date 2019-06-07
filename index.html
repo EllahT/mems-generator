@@ -15,28 +15,31 @@
     </header>
 
     <main class="main">
-        <button class="show-gallery btn" onclick="onToggleGallery()">Show/Hide Gallery</button>
 
         <section class="gallery">
+            <h2>Image Picker</h2>
+            <div class="gallery-tool-box">     
+                
+                <button class="show-gallery btn" onclick="onToggleGallery()"><img src="img/icons/shrink.png" alt="Show/Hide Gallery"></button>
 
-            <div class="list-filter">
-                <lable>search by keyword</lable>
-                <input list="keywords" placeholder="dogs" onchange="filterBy(this.value)">
-                <datalist id="keywords">
+                <div class="list-filter">
+                    <input list="keywords" placeholder="dogs" onchange="filterBy(this.value)">
+                    <button onchange="filterBy(this.value)"><img src="img/icons/search.png" alt="search by keyword" class="filter-image"></button>
+                    <datalist id="keywords">
 
-                </datalist>
-            </div>
+                    </datalist>
+                </div>
 
-            <div class="block-filter">
-                <label>click on a tag to filter the images</label>
-                <br>
-                <button class="btn" onclick="filterBy('all')">Show All</button>
-                <div class="tags-container">
+                <button class="btn" onclick="filterBy('all')"><img src="img/icons/unfilter.png" alt="Show All"></button>
+                <button class="btn" onclick="onToggleBlockFilter()"><img src="img/icons/filter.png" alt="Filter by Popular Keywords"></button>
 
+                <div class="block-filter">
+
+                    <div class="tags-container">
+
+                    </div>
                 </div>
             </div>
-
-            <h2>click the image to add it as your meme background</h2>
             <div class="gallery-images-container">
 
             </div>
@@ -53,7 +56,7 @@
                         <h3>enter text</h3>
                         <div class="control-box-item">
 
-                        <input onchange="onAddText(this, this.value)">
+                            <input onchange="onAddText(this, this.value)">
                         </div>
                     </div>
 
@@ -92,33 +95,33 @@
                     </div>
 
                     <div class="font-family control-box-item-container">
-                            <div class="dropdown control-box-item" id="fonts">
-                                <h3 class="dropbtn">Font Family</h3>
-                                <div class="dropdown-content">
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')"
-                                        class="impact">impact</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"
-                                        class="AbrilFatFace">AbrilFatFace</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')"
-                                        class="AlfaSlabOne">AlfaSlabOne</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')"
-                                        class="Bangers">Bangers</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')"
-                                        class="KumarOneOutline">KumarOneOutline</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')"
-                                        class="Monoton">Monoton</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')"
-                                        class="Righteous">Righteous</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')"
-                                        class="SecularOne">SecularOne</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')"
-                                        class="SplecialElite">SplecialElite</a>
-                                    <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')"
-                                        class="ZCOOLKuaile">ZCOOLKuaile</a>
-                                </div>
+                        <div class="dropdown control-box-item" id="fonts">
+                            <h3 class="dropbtn">Font Family</h3>
+                            <div class="dropdown-content">
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')"
+                                    class="impact">impact</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"
+                                    class="AbrilFatFace">AbrilFatFace</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')"
+                                    class="AlfaSlabOne">AlfaSlabOne</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')"
+                                    class="Bangers">Bangers</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')"
+                                    class="KumarOneOutline">KumarOneOutline</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')"
+                                    class="Monoton">Monoton</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')"
+                                    class="Righteous">Righteous</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')"
+                                    class="SecularOne">SecularOne</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')"
+                                    class="SplecialElite">SplecialElite</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')"
+                                    class="ZCOOLKuaile">ZCOOLKuaile</a>
                             </div>
                         </div>
+                    </div>
 
                     <div class="alignment control-box-item-container">
                         <h3>alignment</h3>
@@ -158,11 +161,11 @@
             <div class="actions-containor">
                 <ul class="actions">
                     <li class="btn downloadBtn">
-                        <a href="#" onclick="onDownload(this)" return=false; download="">Download</a>
+                        <a href="#" onclick="onDownload(this)" return=false; download=""><img src="img/icons/download.png" alt="Download"></a>
                     </li>
 
                     <li>
-                        <button class="btn clearBtn" onclick="onClear(this)">Clear Canvas</button>
+                        <button class="btn clearBtn" onclick="onClear(this)"><img src="img/icons/delete.png" alt="Clear Canvas"></button>
                     </li>
                 </ul>
 

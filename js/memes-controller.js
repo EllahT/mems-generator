@@ -69,7 +69,7 @@ function onImageClicked(imgId) {
     updatePickedImage(imgId);
     renderCanvas();
     let elEditor = document.querySelector('.editor');
-    elEditor.scrollIntoView({ alignToTop: true, behavior: "smooth" });
+    elEditor.scrollIntoView({ alignToTop: true, behavior: "smooth", block: "center" });
 }
 
 function renderCanvas() {
@@ -92,7 +92,7 @@ function filterBy(keyword) {
     updateFilter(keyword);
     renderGallery();
     let elGallery = document.querySelector('.gallery-images-container');
-    elGallery.scrollIntoView({ alignToTop: true, behavior: "smooth" });
+    elGallery.scrollIntoView({ alignToTop: true, behavior: "smooth", block: "center"});
 }
 
 function onDownload(elLink) {
@@ -108,8 +108,13 @@ function onClear() {
 }
 
 function onToggleGallery() {
-    const elGallery = document.querySelector('.gallery');
+    const elGallery = document.querySelector('.gallery-images-container');
     elGallery.classList.toggle('hide');
+}
+
+function onToggleBlockFilter() {
+    const elFilter = document.querySelector('.block-filter');
+    elFilter.classList.toggle('hide');
 }
 
 function renderFilter() {
