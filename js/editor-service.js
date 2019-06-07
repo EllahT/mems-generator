@@ -5,7 +5,7 @@ let gPrefs = {
     fontFillColor: 'white',
     fontStrokeColor: 'black',
     fontFamily: 'impact',
-    fontSize: '30px',
+    fontSize: '50',
     horizontalAlignment: 'left',
     verticalAlignment: (window.innerHeight /3),
     currLine: 1
@@ -23,7 +23,7 @@ function initMeme() {
         fontFillColor: 'white',
         fontStrokeColor: 'black',
         fontFamily: 'impact',
-        fontSize: '30px',
+        fontSize: '50',
         horizontalAlignment: 'left',
         verticalAlignment: 50,
         currLine: 1

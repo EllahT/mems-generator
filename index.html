@@ -20,34 +20,34 @@
             <h2>Image Picker</h2>
             <div class="gallery-tool-box">
 
-                <button class="btn" onclick="onToggleGallery()"><img src="img/icons/shrink.png"
+                <button class="btn" onclick="onToggleGallery()"><img class="btnImg" src="img/icons/shrink.png"
                         alt="Show/Hide Gallery" id="gallery-display-changer"></button>
-                <button class="btn" onclick="onChangeGalleryStyle('list')"><img src="img/icons/image-list.png"
+                <button class="btn" onclick="onChangeGalleryStyle('list')"><img class="btnImg" src="img/icons/image-list.png"
                         alt="Image List"></button>
-                <button class="btn" onclick="onChangeGalleryStyle('grid')"><img src="img/icons/gallery.png"
+                <button class="btn" onclick="onChangeGalleryStyle('grid')"><img class="btnImg" src="img/icons/gallery.png"
                         alt="Gallery"></button>
 
                 <div class="list-filter">
                     <input list="keywords" placeholder="dogs" onchange="filterBy(this.value)">
-                    <button onchange="filterBy(this.value)"><img src="img/icons/search.png" alt="search by keyword"
+                    <button onchange="filterBy(this.value)"><img class="btnImg" src="img/icons/search.png" alt="search by keyword"
                             class="filter-image"></button>
                     <datalist id="keywords">
 
                     </datalist>
                 </div>
 
-                <button class="btn" onclick="filterBy('all')"><img src="img/icons/unfilter.png" alt="Show All"></button>
-                <button class="btn" onclick="onToggleHide('.block-filter')"><img src="img/icons/filter.png"
+                <button class="btn" onclick="filterBy('all')"><img class="btnImg" src="img/icons/unfilter.png" alt="Show All"></button>
+                <button class="btn" onclick="onToggleHide('.block-filter')"><img class="btnImg" src="img/icons/filter.png"
                         alt="Filter by Popular Keywords"></button>
 
-                <div class="block-filter">
+                <div class="block-filter hide">
 
                     <div class="tags-container">
 
                     </div>
                 </div>
             </div>
-            <div class="gallery-images-container grid">
+            <div class="gallery-images-container grid hide">
 
             </div>
 
@@ -62,9 +62,9 @@
                     <input onchange="onAddText(this, this.value)">
                 </div>
 
-                <button onclick="onToggleHide('.control-box')" class="btn"><img src="img/icons/settings.png" alt="show/hide control box"></button>
+                <button onclick="onToggleHide('.control-box')" class="btn"><img class="btnImg" src="img/icons/settings.png" alt="show/hide control box"></button>
 
-                <div class="control-box">
+                <div class="control-box hide">
 
                     <div class="font-style control-box-item-container">
                         <h3>font style</h3>
@@ -167,12 +167,12 @@
             <div class="actions-containor">
                 <ul class="actions">
                     <li class="btn downloadBtn">
-                        <a href="#" onclick="onDownload(this)" return=false; download=""><img
+                        <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btnImg"
                                 src="img/icons/download.png" alt="Download"></a>
                     </li>
 
                     <li>
-                        <button class="btn clearBtn" onclick="onClear(this)"><img src="img/icons/delete.png"
+                        <button class="btn clearBtn" onclick="onClear(this)"><img class="btnImg" src="img/icons/delete.png"
                                 alt="Clear Canvas"></button>
                     </li>
                 </ul>
@@ -189,8 +189,8 @@
     <script src="js/memes-main.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>
-    <script src="js/gallry-service.js"></script>
-    <script src="js/ediror-service.js"></script>
+    <script src="js/gallery-service.js"></script>
+    <script src="js/editor-service.js"></script>
     <script src="js/util-service.js"></script>
 </body>
 

@@ -27,7 +27,7 @@ function onDownload(elLink) {
 }
 
 function onClear() {
-    gCtx.fillStyle = 'lightgreen';
+    gCtx.fillStyle = 'white';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
 }
 
@@ -63,6 +63,7 @@ function onAddText(el, txt) {
 }
 
 function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt) {
+    
     gCtx.fillStyle = currFontFillColor;
     gCtx.strokeStyle = currFontStrokeColor;
     const str = currFontSize + 'px ' + currFontFamily;

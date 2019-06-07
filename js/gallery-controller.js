@@ -10,8 +10,8 @@ function renderGallery() {
 
         return `<div class="image-card img-${image.id}">
             <h2 class="image-name">${image.name}</h2>
-            <div class="image-container">
-                <img class="img-${image.id}" src="${image.url}" onclick="onImageClicked('${image.id}')">
+            <div class="image-container" onclick="onImageClicked('${image.id}')">
+                <img class="img-${image.id}" src="${image.url}">
                 <div class="image-screen"><h4>Pick this image as your meme background</h4></div>
             </div>
         
@@ -56,9 +56,12 @@ function onImageClicked(imgId) {
 }
 
 function filterBy(keyword) {
+    showGallery();
+    
+    const elGallery = document.querySelector('.gallery-images-container');
+    
     updateFilter(keyword);
     renderGallery();
-    let elGallery = document.querySelector('.gallery-images-container');
     elGallery.scrollIntoView({ alignToTop: true, behavior: "smooth", block: "center"});
 }
 
@@ -75,8 +78,16 @@ function onToggleGallery() {
     }
 }
 
-function onChangeGalleryStyle(type) {
+function showGallery() {
     const elGallery = document.querySelector('.gallery-images-container');
+    if (elGallery.classList.contains('hide')) elGallery.classList.remove('hide');
+}
+
+function onChangeGalleryStyle(type) {
+    showGallery();
+    
+    const elGallery = document.querySelector('.gallery-images-container');
+
     if (type === "grid") {
         elGallery.classList.add('grid');
         elGallery.classList.remove('image-list');

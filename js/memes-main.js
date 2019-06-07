@@ -12,6 +12,7 @@ function init() {
     renderFilter();
     renderGallery();
     renderCanvas();
+    onClear();
 }
 
 function onToggleHide(theClass) {
