@@ -21,17 +21,17 @@
             <div class="gallery-tool-box">
 
                 <div class="images-tool-box">
-                    <button class="btn" onclick="onToggleGallery()"><img class="btnImg" src="img/icons/shrink.png"
+                    <button class="btn" onclick="onToggleGallery()"><img class="btn-img" src="img/icons/shrink.png"
                             alt="Show/Hide Gallery" id="gallery-display-changer"></button>
-                    <button class="btn" onclick="onChangeGalleryStyle('list')"><img class="btnImg"
+                    <button class="btn" onclick="onChangeGalleryStyle('list')"><img class="btn-img"
                             src="img/icons/image-list.png" alt="Image List"></button>
-                    <button class="btn" onclick="onChangeGalleryStyle('grid')"><img class="btnImg"
+                    <button class="btn" onclick="onChangeGalleryStyle('grid')"><img class="btn-img"
                             src="img/icons/gallery.png" alt="Gallery"></button>
                 </div>
 
                 <div class="list-filter">
                     <input list="keywords" placeholder="search by keyword" onchange="filterBy(this.value)">
-                    <button onchange="filterBy(this.value)"><img class="btnImg" src="img/icons/search.png"
+                    <button onchange="filterBy(this.value)"><img class="btn-img" src="img/icons/search.png"
                             alt="search by keyword" class="filter-image"></button>
                     <datalist id="keywords">
 
@@ -39,9 +39,9 @@
                 </div>
 
                 <div class="filter-tool-box">
-                    <button class="btn" onclick="filterBy('all')"><img class="btnImg" src="img/icons/unfilter.png"
+                    <button class="btn" onclick="filterBy('all')"><img class="btn-img" src="img/icons/unfilter.png"
                             alt="Show All"></button>
-                    <button class="btn" onclick="onToggleHide('.block-filter')"><img class="btnImg"
+                    <button class="btn" onclick="onToggleHide('block-filter')"><img class="btn-img"
                             src="img/icons/filter.png" alt="Filter by Popular Keywords"></button>
                 </div>
 
@@ -65,115 +65,131 @@
                 <h2>control box</h2>
 
                 <div class="texts-container">
-                    <div class="first-line">
+                    <div class="input-line first-line">
                         <h3>enter text for the first line</h3>
                         <input onchange="onAddText(1,this, this.value)">
-                        <button class="btn" onclick="onDeleteLine(1)">Delete line</button>
+                        <button class="btn" onclick="onDeleteLine(1)"><img class="btn-img"
+                                src="img/icons/delete-line.png" alt="Delete line"></button>
                     </div>
                     <div class="text-lines hide">
 
                     </div>
 
-                    <div class="last-line hide">
+                    <div class="input-line last-line hide">
                         <h3>enter text for the last line</h3>
                         <input onchange="onAddText(9,this, this.value)">
-                        <button class="btn" onclick="onDeleteLine(9)">Delete line</button>
+                        <button class="btn" onclick="onDeleteLine(9)"><img class="btn-img"
+                                src="img/icons/delete-line.png" alt="Delete line"></button>
                     </div>
 
                 </div>
 
-                <button onclick="onToggleHide('.control-box')" class="btn"><img class="btnImg"
+                <button onclick="onToggleHide('control-box')" class="btn"><img class="btn-img"
                         src="img/icons/settings.png" alt="show/hide control box"></button>
-                <button onclick="onAddLine()" class="btn"><img src="img/icons/add-line.png" alt="add line"></button>
+                <button onclick="onAddLine()" class="btn"><img class="btn-img" src="img/icons/add-line.png"
+                        alt="add line"></button>
 
-                <div class="control-box hide">
+                <div class="control-box">
 
-                    <div class="font-style control-box-item-container">
-                        <h3>font style</h3>
+                    <!-- font -->
+                    <div class="sec-control font-control-box">
+                        <h3>Font</h3>
+                        
+                        <!-- font style -->
                         <div class="control-box-item">
-                            <label>filled</label>
-                            <input type="radio" name="alignment" value="filled"
-                                onchange="onChangePrefs(event,'fontStyle', this.value)">
-                            <label>empty</label>
-                            <input type="radio" name="alignment" value="empty"
-                                onchange="onChangePrefs(event,'fontStyle', this.value)">
+                            <div onclick="onToggleHide('dropdown-style')" title="Font Style">
+                                <img class="btn-img" src="img/icons/style.png">
+                            </div>
+                            <div class="dropdown-content dropdown-style hide">
+                                <a href="#" onclick="onChangePrefs(event, 'fontstyle', 'filled')"><img class="btn-img" src="img/icons/filled.png" alt="filled"></a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontstyle', 'empty')"><img class="btn-img" src="img/icons/empty.png" alt="empty"></a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="font-color control-box-item-container">
-                        <h3>font color</h3>
+                        <!-- font size -->
                         <div class="control-box-item">
-                            <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
+                            <div onclick="onToggleHide('dropdown-size')" title="Font Size">
+                                <img class="btn-img" src="img/icons/font-size.png">
+                            </div>
+                            <div class="dropdown-content dropdown-size hide">
+                                <input type="range" min="5" max="70" value="30" onchange="onChangePrefs(event,'fontSize', this.value)">    
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="font-border-color control-box-item-container">
-                        <h3>font border color</h3>
+                        <!-- font family -->
                         <div class="control-box-item">
-                            <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
-                        </div>
-                    </div>
-
-                    <div class="font-size control-box-item-container">
-                        <h3>font size</h3>
-                        <div class="control-box-item">
-                            <input type="range" min="5" max="70" value="30"
-                                onchange="onChangePrefs(event,'fontSize', this.value)">
-                        </div>
-                    </div>
-
-                    <div class="font-family control-box-item-container">
-                        <div class="dropdown control-box-item" id="fonts">
-                            <h3 class="dropbtn">Font Family</h3>
-                            <div class="dropdown-content">
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')"
-                                    class="impact">impact</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')"
-                                    class="AbrilFatFace">AbrilFatFace</a>
+                            <div onclick="onToggleHide('dropdown-family')" title="Font Family">
+                                <img class="btn-img" src="img/icons/font-family.png" alt="Font Family">
+                            </div>
+                            <div class="dropdown-content dropdown-family hide">
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')" class="impact">impact</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')" class="AbrilFatFace">AbrilFatFace</a>
                                 <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')"
-                                    class="AlfaSlabOne">AlfaSlabOne</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')"
-                                    class="Bangers">Bangers</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')"
-                                    class="KumarOneOutline">KumarOneOutline</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')"
-                                    class="Monoton">Monoton</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')"
-                                    class="Righteous">Righteous</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')"
-                                    class="SecularOne">SecularOne</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')"
-                                    class="SplecialElite">SplecialElite</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')"
-                                    class="ZCOOLKuaile">ZCOOLKuaile</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')" class="AlfaSlabOne">AlfaSlabOne</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')" class="Bangers">Bangers</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')" class="KumarOneOutline">KumarOneOutline</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')" class="Monoton">Monoton</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')" class="Righteous">Righteous</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')" class="SecularOne">SecularOne</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')" class="SplecialElite">SplecialElite</a>
+                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')" class="ZCOOLKuaile">ZCOOLKuaile</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="alignment control-box-item-container">
-                        <h3>alignment</h3>
+                    <!-- colors -->
+                    <div class="sec-control colors-control-box">
+                        <h3>Colors</h3>
+                        
+                        <!-- font color -->
                         <div class="control-box-item">
-                            <label>right</label>
-                            <input type="radio" name="alignment" value="5"
-                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
-                            <label>center</label>
-                            <input type="radio" name="alignment" value="3"
-                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
-                            <label>left</label>
-                            <input type="radio" name="alignment" value="1"
-                                onchange="onChangePrefs(event,'horizontalAlignment', this.value)">
+                            <div onclick="onToggleHide('dropdown-color')" title="Font Color">
+                                <img class="btn-img" src="img/icons/color.png">
+                            </div>
+                            <div class="dropdown-content dropdown-color hide">
+                                <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
+                            </div>
+                        </div>
 
+                        <!-- font-border color -->
+                        <div class="control-box-item">
+                            <div onclick="onToggleHide('dropdown-border-color')" title="Font Border Color">
+                                <img class="btn-img" src="img/icons/border-color.png">
+                            </div>
+                            <div class="dropdown-content dropdown-border-color hide">
+                                <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="vertical-alignment control-box-item-container">
-                        <h3>Vertical alignment</h3>
-                        <div class="vertical-alignment control-box-item">
-                            <button class="btn" onclick="onChangeVerticalAlignment('up')">↑</button>
-                            <button class="btn" onclick="onChangeVerticalAlignment('down')">↓</button>
+                    <!-- alignment -->
+                    <div class="sec-control alignment-control-box">
+                        <h3>alignment</h3>
+
+                        <!-- oraizonal alignment -->
+                        <div class="control-box-item">
+                            <div onclick="onToggleHide('dropdown-alignment')" title="Font Alignment">
+                                <img class="btn-img" src="img/icons/alignment.png">
+                            </div>
+                            <div class="dropdown-content dropdown-alignment hide">
+                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 5)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 3)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 1)"><img class="btn-img" src="img/icons/align-left.png" alt="left"></a>
+                            </div>
+                        </div>
+
+                        <!-- vertical alignment -->
+                        <div class="control-box-item">
+                            <div onclick="onToggleHide('dropdown-vertical-alignment')" title="Font Vertical Alignment">
+                                <img class="btn-img" src="img/icons/vertical-align.png">
+                            </div>
+                            <div class="dropdown-content dropdown-vertical-alignment hide">
+                                <a href="#" onclick="onChangeVerticalAlignment('+')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
+                                <a href="#" onclick="onChangeVerticalAlignment('-')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -186,12 +202,12 @@
             <div class="actions-containor">
                 <ul class="actions">
                     <li class="btn downloadBtn">
-                        <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btnImg"
+                        <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btn-img"
                                 src="img/icons/download.png" alt="Download"></a>
                     </li>
 
                     <li>
-                        <button class="btn clearBtn" onclick="onClear(this)"><img class="btnImg"
+                        <button class="btn clearBtn" onclick="onClear(this)"><img class="btn-img"
                                 src="img/icons/delete.png" alt="Clear Canvas"></button>
                     </li>
                 </ul>

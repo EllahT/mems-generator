@@ -80,6 +80,7 @@ h2 {
 
 h3 {
     margin: 0;
+    width: 100%;
 }
 
 h6 {
@@ -130,9 +131,24 @@ li {
 
 }
 
-.btnImg {
+.btn-small {
+    background-color: lightskyblue;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px 2px #205263;
+    padding: 5px;
+    min-height: 30px;
+    max-height: max-content;
+    margin: 5px;
+}
+
+.btn-img {
     width: 30px;
     height: 30px;
+}
+
+.btn-small-img {
+    width: 25px;
+    height: 25px;
 }
 
 /* layout */
@@ -335,34 +351,35 @@ li {
 
 /* control box */
 
-.control-box-container {
+.control-box-item {
     width: 100%;
     max-height: 50%;
     margin: 10px;
 }
 
 .control-box {
-    display: grid;
-    justify-content: center;
-    /* grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-    grid-template-rows: repeat(auto-fill, minmax(1rem, 1fr)); */
-    grid-template-columns: 200px 200px 200px;
-    grid-template-rows: 100px 100px 100px 100px;
-    grid-template-areas: 
-    "style color border family"
-    "alignment vertical size family"
-    ". delete delete .";
-    grid-gap: 20px;
-}
-
-.control-box-item-container {
-    border: 1px solid #E91E63;
-    border-radius: 15px;
-}
-
-.control-box-item {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.sec-control {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 3fr);
+    background-color: #29676363;
+    margin: 5px 0;
+    border-radius: 10px;
+    min-width: 70vw;
+}
+
+.sec-control > h3 {
+    width: 20%;
+}
+
+.input-line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -402,30 +419,22 @@ li {
     grid-area: delete;
 }
 
-.font-style > .control-box-item, .vertical-alignment > .control-box-item, .alignment > .control-box-item {
-    flex-direction: row;
-    justify-content: center;
-}
-
-.dropdown {
-    position: relative;
-}
-
 .dropdown-content {
-    overflow:scroll;
-    position: absolute;
     top: 2rem;
-    background-color: white;
-    height: 180px;
-    display: flex;
-    flex-direction: column;
-    transition: ease;
-    border-radius: 5px;
     z-index: 1;
 }
 
-.dropdown-content > a:hover {
+.dropdown-content a {
+    width: 100%;
+    display: block;
+}
+
+.dropdown-content a:hover {
     color: #E91E63;
+}
+
+.dropdown-content a img:hover {
+    border:1px solid #E91E63;
 }
 
 .AbrilFatFace {
