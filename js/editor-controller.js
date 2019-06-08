@@ -6,16 +6,24 @@ let gCtx;
 function renderCanvas() {
     const imgId = getSelectedImageId();
     
-    const imgClass = 'img.img-' + imgId;
-    const img = document.querySelector(imgClass);
+    if (imgId !== 'blank') {
+        const imgClass = 'img.img-' + imgId;
+        const img = document.querySelector(imgClass);
 
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+    
+    } else {
+    
+        gCtx.fillStyle = 'white';
+        gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);    
+
+    }
 
     const texts = getMemeTexts();
     
     if (texts.length > 0) {
         texts.forEach(function(text){
-            doAddText(text.fontStyle, text.fontFillColor, text.fontStrokeColor, text.fontSize, text.fontFamily, text.x, text.y, text.text)
+            doAddText(text.fontStyle, text.fontFillColor, text.fontStrokeColor, text.fontSize, text.fontFamily, text.horAlign, text.line, text.text)
         })
     }
 }
@@ -33,32 +41,34 @@ function onClear() {
     initMeme();
 }
 
-function onAddText(line, el, txt) {
+function onAddText(el, txt) {
     el.value = '';
 
+    const line = getCurrPrefs('line');
+    
     if (isThereLine(line)) {
-        if (confirm('there is a line a that spot, do you want to switch them?')) {
-            onDeleteLine(line)
+        if (confirm('you are trying to edit line number '+line+' to switch what\'s in it, click OK')) {
+            deleteLine(line)
+            renderCanvas();
         }else return;
     }
 
     let currFontFillColor = getCurrPrefs('fontFillColor');
     let currFontStrokeColor = getCurrPrefs('fontStrokeColor');
-    let currFontSize = getCurrPrefs('fontSize');
+    let currFontSize = (gCanvas.height/25*getCurrPrefs('fontSize'));
     let currFontFamily = getCurrPrefs('fontFamily');
     let currFontStyle = getCurrPrefs('fontStyle');
     let currHorAlign = getCurrPrefs('horizontalAlignment');
-    
-    let x = ((gCanvas.width/6)*currHorAlign);
 
-    let y = (gCanvas.height/10)*line;
-
-    doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt);
-    updateMeme(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt, line);
+    doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
+    updateMeme(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
 }
 
-function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt) {
-    
+function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt) {
+    let x = ((gCanvas.width/5)*currHorAlign);
+
+    let y = (gCanvas.height/6)*line;
+
     gCtx.fillStyle = currFontFillColor;
     gCtx.strokeStyle = currFontStrokeColor;
     const str = currFontSize + 'px ' + currFontFamily;
@@ -70,10 +80,12 @@ function doAddText(currFontStyle, currFontFillColor, currFontStrokeColor, currFo
     } else {
         gCtx.strokeText(txt, x, y);
     }
+
+    scrollToSec(false,'meme');
 }
 
 function onChangePrefs(ev, prefType, val) {
-    ev.preventDefault();
+    if (ev !== false) ev.preventDefault();
     const elPicked = document.querySelector('.'+prefType);
     elPicked.innerText = val;
     
@@ -82,26 +94,63 @@ function onChangePrefs(ev, prefType, val) {
 
 function onChangeVerticalAlignment(ev, direction) {
     ev.preventDefault();
-    console.log('entered change ver align', direction);
+
+    changeVerticalAlignment(direction);
+    const val = getCurrPrefs('line');
+    const elPicked = document.querySelector('.line');
+    elPicked.innerText = val;
+
+    renderCanvas();
+}
+
+function onEditLine() {
+    const line = prompt('which line do you want to edit? (1-5)');
+    
+    if (findIdxbyLine(+line) === -1) {
+        alert('there is nothing there!');
+        return;
+    }
+    const lineText = getTextByLine(line);
+    const elInput = document.querySelector('.text-input');
+    elInput.value = lineText;
+
+    updateAllPrefs(line);
+    updateCurrLine(line);
+    updateCurrLineSnapAndFocus(line);
+}
+
+function updateCurrLineSnapAndFocus(newLine) {
+    const elCurrLine = document.querySelector('.curr-line');
+    elCurrLine.innerText = newLine;
+
+    document.querySelector(".text-input").focus();
 }
 
 function onAddLine() {
-    let currLines = getCurrLines();
+    const currLines = getCurrLinesCount();
+    const currLine = getCurrPrefs('line');
+    
+    let newLine; 
 
-    if (currLines < 2) {
-        onRemoveClassToEl('last-line','hide');
-
+    if (currLines <= 1) {
+        newLine = 5;
     } else {
-        doAddLine();
+        (currLine === 5)? newLine = 2 : newLine = currLine+1;
     }
+
+    updateCurrLine(newLine);
+    updateCurrLineSnapAndFocus(newLine);
 }
 
 function doAddLine() {
-    const currLines = getCurrLines();
-    const elContainer = document.querySelector('.text-lines');
+    const currLines = getCurrLinesCount();
+    
 }
 
-function onDeleteLine(line) {
-    deleteLine(line);
-    renderCanvas();
+function onDeleteLine() {
+    const line = getCurrLine();
+    if (confirm('you are trying to delete line number '+line+' are you sure?')) {
+        deleteLine(line)
+        renderCanvas();
+    }else return;
 }

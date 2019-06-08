@@ -6,7 +6,7 @@ let gMeme;
 
 function initMeme() {
     gMeme = {
-        selectedImgId: gImgs[0].id,
+        selectedImgId: 'blank',
         txts: []
     }
     gPrefs = {
@@ -14,9 +14,9 @@ function initMeme() {
         fontFillColor: 'white',
         fontStrokeColor: 'black',
         fontFamily: 'impact',
-        fontSize: '50',
+        fontSize: '3',
         horizontalAlignment: 1,
-        verticalAlignment: 2
+        line: 1
     }
 }
 
@@ -36,23 +36,22 @@ function updatePrefs(prefType, val) {
     gPrefs[prefType] = val;
 }
 
-function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,x,y,txt,line) {   
+function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,currHorAlign,line,txt) {   
     const newText = {
         fontStyle: currFontStyle,
         fontFillColor: currFontFillColor,
         fontStrokeColor: currFontStrokeColor,
         fontFamily: currFontFamily,
         fontSize: currFontSize,
-        x: x,
-        y: y,
+        horAlign: currHorAlign,
+        line: line,
         text: txt,
-        line: line
     }
     
     gMeme.txts.push(newText);
 }
 
-function getCurrLines() {
+function getCurrLinesCount() {
     return gMeme.txts.length;
 }
 
@@ -76,15 +75,55 @@ function findIdxbyLine(line) {
     })
 }
 
+function changeVerticalAlignment(direction) {
+    const line = getCurrPrefs('line');
+    const lineIdx = findIdxbyLine(line);
+    
+    let newLine = (direction === '+')? line+1 : line-1;
 
-// TODO: write vertical alignment function
+    if (newLine < 1 || newLine > 5) {
+        alert('can\'t move out of the canvas');
+        return;
+    }
+
+    if (gMeme.txts[lineIdx]) {
+        gMeme.txts[lineIdx].line = newLine;
+    }
+    
+    gPrefs.line = newLine;
+}
+
+function updateCurrLine(line) {
+    gPrefs.line = line;
+}
+
+function getCurrLine() {
+    return gPrefs.line;
+}
+
+function updateAllPrefs(line) {
+    const lineIdx = findIdxbyLine(+line);
+    const currText = gMeme.txts[lineIdx];
+
+    onChangePrefs(false,'fontStyle',currText.fontStyle);
+    onChangePrefs(false,'fontFillColor',currText.fontFillColor);
+    onChangePrefs(false,'fontStrokeColor',currText.fontStrokeColor);
+    onChangePrefs(false,'fontFamily',currText.fontFamily);
+    onChangePrefs(false,'fontSize',currText.fontSize);
+    onChangePrefs(false,'horizontalAlignment',currText.horizontalAlignment);
+}
+
+function getTextByLine(line) {
+    const lineIdx = findIdxbyLine(+line);
+    console.log(lineIdx);
+    console.log(gMeme)
+    return gMeme.txts[lineIdx].text;
+}
+
+
 // TODO: fix mobile -> download a bigger pic
-// TODO: do edit existing line 
-// TODO: pick a line to edit + mark the edited line
 // TODO: keep image proporation on gallery and canvas
-// TODO: nav bar fixed
-
-// 7. Line dragging is not a must and shall be implemented only in case you implemented all above functions first
+// TODO: Line dragging
 
 //BONUSE:
 // 1. Allow using an image from your computer

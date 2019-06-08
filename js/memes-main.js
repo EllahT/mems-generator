@@ -16,7 +16,7 @@ function init() {
 }
 
 function scrollToSec(event, className) {
-    event.preventDefault();
+    if (event !== false) event.preventDefault();
     const elScrollTo = document.querySelector('.'+className);
     elScrollTo.scrollIntoView({behavior: "smooth", block: "center"});
 }

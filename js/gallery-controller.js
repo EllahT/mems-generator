@@ -52,7 +52,7 @@ function onImageClicked(imgId) {
     updatePickedImage(imgId);
     renderCanvas();
     const elEditor = document.querySelector('.editor');
-    elEditor.scrollIntoView({alignToTop: true, behavior: "smooth", block: "center"});
+    elEditor.scrollIntoView({alignToTop: true, behavior: "smooth"});
 }
 
 function filterBy(keyword) {
@@ -85,6 +85,7 @@ function showGallery() {
 
 function onChangeGalleryStyle(type) {
     showGallery();
+    scrollToSec(false,'gallery-images-container');
     
     const elGallery = document.querySelector('.gallery-images-container');
 

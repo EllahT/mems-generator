@@ -392,6 +392,10 @@ li {
     width: 90vw;
 }
 
+.prefs-list li {
+    margin: 2px;
+}
+
 @media (min-width: 520px) {
     .prefs-list {
         max-width: 70vw;

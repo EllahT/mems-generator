@@ -15,7 +15,7 @@
     </header>
 
     <nav class="nav">
-        <div class="logo">Memes Generator</div>
+        <div class="logo" onclick="scrollToSec(false,'header')">Memes Generator</div>
         <ul class="nav-bar">
             <li><a href="#" onclick="scrollToSec(event,'gallery')">Gallery</a></li>
             <li><a href="#" onclick="scrollToSec(event,'editor')">Editor</a></li>
@@ -69,23 +69,16 @@
 
                 <div class="texts-container">
                     <div class="input-line first-line">
-                        <h3>enter text for the first line</h3>
-                        <input onchange="onAddText(1,this, this.value)">
-                        <button class="btn" onclick="onDeleteLine(1)" title="delete line"><img class="btn-img" src="img/icons/delete-line.png" alt="Delete line"></button>
-                    </div>
-                    <div class="text-lines hide">
-
-                    </div>
-
-                    <div class="input-line last-line hide">
-                        <h3>enter text for the last line</h3>
-                        <input onchange="onAddText(9,this, this.value)">
-                        <button class="btn" onclick="onDeleteLine(9)" title="delete line"><img class="btn-img" src="img/icons/delete-line.png" alt="Delete line"></button>
+                        <h3>enter text for line <span class="curr-line">1</span></h3>
+                        <input class="text-input" onchange="onAddText(this, this.value)">
+                        <button onclick="onToggleHide('control-box')" class="btn" title="show/hide control box"><img class="btn-img" src="img/icons/settings.png" alt="show/hide control box"></button>
+                        <button onclick="onAddLine()" class="btn" title="add line"><img class="btn-img" src="img/icons/add-line.png" alt="add line"></button>
+                        <button class="btn" onclick="onDeleteLine()" title="delete line"><img class="btn-img" src="img/icons/delete-line.png" alt="Delete Line"></button>
+                        <button class="btn" onclick="onEditLine()" title="edit line"><img class="btn-img" src="img/icons/edit-line.png" alt="Edit Line"></button>
                     </div>
                 </div>
 
-                <button onclick="onToggleHide('control-box')" class="btn" title="show/hide control box"><img class="btn-img" src="img/icons/settings.png" alt="show/hide control box"></button>
-                <button onclick="onAddLine()" class="btn" title="add line"><img class="btn-img" src="img/icons/add-line.png" alt="add line"></button>
+                
                 
                 <div>
                     <ul class="prefs-list">
@@ -93,14 +86,14 @@
                         <li>Font Color <span class="picked fontFillColor">White</span></li>
                         <li>Font Border Color <span class="picked fontStrokeColor">Black</span></li>
                         <li>Font Family <span class="picked fontFamily">Impact</span></li>
-                        <li>Font Size <span class="picked fontSize">50px</span></li>
-                        <li>Horizontal Alignment (out of 10) <span class="picked horizontalAlignment">1</span></li>
-                        <li>Vertical Alignment (out of 6) <span class="picked verticalAlignment">2</span></li>
+                        <li>Font Size (out of 5) <span class="picked fontSize">3</span></li>
+                        <li>Horizontal Alignment (out of 5) <span class="picked horizontalAlignment">1</span></li>
+                        <li>Vertical Alignment (out of 5) <span class="picked line">1</span></li>
                     </ul>
 
                 </div>
 
-                <div class="control-box">
+                <div class="control-box hide">
 
                     <!-- font -->
                     <div class="sec-control font-control-box">
@@ -123,7 +116,7 @@
                                 <img class="btn-img" src="img/icons/font-size.png">
                             </div>
                             <div class="dropdown-content dropdown-size hide">
-                                <input type="range" min="5" max="70" value="30" onchange="onChangePrefs(event,'fontSize', this.value)">    
+                                <input type="range" min="1" max="5" value="3" onchange="onChangePrefs(event,'fontSize', this.value)">    
                             </div>
                         </div>
 
@@ -183,8 +176,8 @@
                                 <img class="btn-img" src="img/icons/alignment.png">
                             </div>
                             <div class="dropdown-content dropdown-alignment hide">
-                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 5)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
-                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 3)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 4)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 2)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
                                 <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 1)"><img class="btn-img" src="img/icons/align-left.png" alt="left"></a>
                             </div>
                         </div>
@@ -195,8 +188,8 @@
                                 <img class="btn-img" src="img/icons/vertical-align.png">
                             </div>
                             <div class="dropdown-content dropdown-vertical-alignment hide">
-                                <a href="#" onclick="onChangeVerticalAlignment(event,'+')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
-                                <a href="#" onclick="onChangeVerticalAlignment(event,'-')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
+                                <a href="#" onclick="onChangeVerticalAlignment(event,'-')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
+                                <a href="#" onclick="onChangeVerticalAlignment(event,'+')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
                             </div>
                         </div>
                     </div>
