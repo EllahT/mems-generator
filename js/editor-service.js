@@ -80,7 +80,9 @@ function findIdxbyLine(line) {
 // TODO: write vertical alignment function
 // TODO: fix mobile -> download a bigger pic
 // TODO: do edit existing line 
-
+// TODO: pick a line to edit + mark the edited line
+// TODO: keep image proporation on gallery and canvas
+// TODO: nav bar fixed
 
 // 7. Line dragging is not a must and shall be implemented only in case you implemented all above functions first
 

@@ -108,7 +108,7 @@ button:active, button:focus {
 
 a, a:visited, a:active {
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
 
 li {
@@ -155,7 +155,7 @@ li {
 
 .header {
     max-height: 100px;
-    margin: 10px 0;
+    margin: 30px 0;
 }
 
 .main {
@@ -167,6 +167,40 @@ li {
     max-height: 100px;
     margin: 10px 0;
 }
+
+/* nav */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #296763de;
+    margin: 0;
+    padding: 0 5px;
+    width: 100vw;
+    z-index: 10;
+}
+
+.logo {
+    font-family: Impact;
+}
+
+.nav-bar {
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+}
+
+.nav-bar li:hover {
+    color: #00bcd4;
+}
+
 
 /* main */
 
@@ -354,23 +388,31 @@ li {
     list-style-type: none;
     display: flex;
     justify-content: center;
-    max-width: 70vw;
+    flex-wrap: wrap;
+    width: 90vw;
+}
+
+@media (min-width: 520px) {
+    .prefs-list {
+        max-width: 70vw;
+    }   
 }
 
 .picked {
     font-weight: bold;
 }
 
-.control-box-item {
-    width: 100%;
-    max-height: 50%;
-    margin: 10px;
-}
-
 .control-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 90vw;
+}
+
+.control-box-item {
+    width: 100%;
+    max-height: 50%;
+    margin: 10px;
 }
 
 .sec-control {
@@ -446,6 +488,9 @@ li {
 
 .dropdown-content a img:hover {
     border:1px solid #E91E63;
+}
+.impact {
+    font-family: Impact;
 }
 
 .AbrilFatFace {

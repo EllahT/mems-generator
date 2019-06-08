@@ -51,8 +51,8 @@ function onKeywordClick(ev, keyword) {
 function onImageClicked(imgId) {
     updatePickedImage(imgId);
     renderCanvas();
-    let elEditor = document.querySelector('.editor');
-    elEditor.scrollIntoView({ alignToTop: true, behavior: "smooth", block: "center" });
+    const elEditor = document.querySelector('.editor');
+    elEditor.scrollIntoView({alignToTop: true, behavior: "smooth", block: "center"});
 }
 
 function filterBy(keyword) {

@@ -14,3 +14,9 @@ function init() {
     renderCanvas();
     onClear();
 }
+
+function scrollToSec(event, className) {
+    event.preventDefault();
+    const elScrollTo = document.querySelector('.'+className);
+    elScrollTo.scrollIntoView({behavior: "smooth", block: "center"});
+}
