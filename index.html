@@ -68,9 +68,9 @@
                 <h2>control box</h2>
 
                 <div class="texts-container">
-                    <div class="input-line first-line">
-                        <h3>enter text for line <span class="curr-line">1</span></h3>
-                        <input class="text-input" onchange="onAddText(this, this.value)">
+                    <div class="input-line">
+                        <h3>you are editing line number <span class="curr-line">1</span></h3>
+                        <input class="text-input" onkeyup ="onAddText(event, this, this.value)">
                         <button onclick="onToggleHide('control-box')" class="btn" title="show/hide control box"><img class="btn-img" src="img/icons/settings.png" alt="show/hide control box"></button>
                         <button onclick="onAddLine()" class="btn" title="add line"><img class="btn-img" src="img/icons/add-line.png" alt="add line"></button>
                         <button class="btn" onclick="onDeleteLine()" title="delete line"><img class="btn-img" src="img/icons/delete-line.png" alt="Delete Line"></button>
@@ -175,9 +175,9 @@
                                 <img class="btn-img" src="img/icons/alignment.png">
                             </div>
                             <div class="dropdown-content dropdown-alignment hide">
-                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 4)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
-                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 2)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
-                                <a href="#" onclick="onChangePrefs(event,'horizontalAlignment', 1)"><img class="btn-img" src="img/icons/align-left.png" alt="left"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horAlign', 4)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horAlign', 2)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
+                                <a href="#" onclick="onChangePrefs(event,'horAlign', 1)"><img class="btn-img" src="img/icons/align-left.png" alt="left"></a>
                             </div>
                         </div>
 

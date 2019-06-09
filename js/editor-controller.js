@@ -4,7 +4,7 @@ let gCanvas;
 let gCtx;
 let gBigCanvas;
 let gBigCtx;
-let gIsEditing = false;
+let gIsEditing = true;
 
 function renderCanvas(canvas, ctx, isBig = false) {
     const imgId = getSelectedImageId();
@@ -59,24 +59,34 @@ function onClear() {
     initMeme();
 }
 
-function onAddText(el, txt) {
-    el.value = '';
-
-    const line = getCurrPrefs('line');
+function onAddText(ev, el, txt) {
     
-    if (isThereLine(line) && gIsEditing === false) {
-        if (confirm('you are trying to edit line number '+line+' to switch what\'s in it, click OK')) {
-            deleteLine(line)
-            renderCanvas(gCanvas,gCtx);
-        }else return;
-    }
-
+    const line = getCurrPrefs('line');
     let currFontFillColor = getCurrPrefs('fontFillColor');
     let currFontStrokeColor = getCurrPrefs('fontStrokeColor');
     let currFontSize = getCurrPrefs('fontSize');
     let currFontFamily = getCurrPrefs('fontFamily');
     let currFontStyle = getCurrPrefs('fontStyle');
     let currHorAlign = getCurrPrefs('horizontalAlignment');
+    
+    if (isThereLine(line) && gIsEditing === false) {
+        if (confirm('you are trying to edit line number '+line+' to switch what\'s in it, click OK')) {
+            deleteLine(line)
+            renderCanvas(gCanvas,gCtx);
+        } else return;
+    }
+
+    gIsEditing = true;
+
+    if (ev.key === 'Enter') {
+        el.value = '';
+        gIsEditing = false;
+    }
+
+    if (ev.key === 'Backspace') {
+        renderCanvas(gCanvas,gCtx);
+        updateText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
+    }
 
     updateText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
     renderCanvas(gCanvas,gCtx);
@@ -99,7 +109,6 @@ function doAddText(canvas,ctx,currFontStyle, currFontFillColor, currFontStrokeCo
         ctx.strokeText(txt, x, y);
     }
 
-    gIsEditing = false;
     scrollToSec(false,'meme');
 }
 
@@ -159,7 +168,7 @@ function onAddLine() {
     if (currLines <= 1) {
         newLine = 5;
     } else {
-        (currLine === 5)? newLine = 2 : newLine = currLine+1;
+        newLine = (currLine === 5)? 2 : currLine+1;
     }
 
     updateCurrLine(newLine);

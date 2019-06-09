@@ -48,7 +48,9 @@ function updateText(currFontStyle,currFontFillColor,currFontStrokeColor,currFont
         text: txt,
     }
     
-    gMeme.txts.push(newText);
+    const lineIdx = findIdxbyLine(line);
+
+    (lineIdx === -1)? gMeme.txts.push(newText) : gMeme.txts[lineIdx] = newText;
 }
 
 function getCurrLinesCount() {
