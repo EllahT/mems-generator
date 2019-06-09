@@ -194,6 +194,7 @@ li {
 
 .logo {
     font-family: Impact;
+    cursor: pointer;
 }
 
 .nav-bar {

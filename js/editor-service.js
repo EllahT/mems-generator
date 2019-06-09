@@ -36,7 +36,7 @@ function updatePrefs(prefType, val) {
     gPrefs[prefType] = val;
 }
 
-function updateMeme(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,currHorAlign,line,txt) {   
+function updateText(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,currHorAlign,line,txt) {   
     const newText = {
         fontStyle: currFontStyle,
         fontFillColor: currFontFillColor,
@@ -102,7 +102,7 @@ function getCurrLine() {
 }
 
 function updateAllPrefs(line) {
-    const lineIdx = findIdxbyLine(+line);
+    const lineIdx = findIdxbyLine(line);
     const currText = gMeme.txts[lineIdx];
 
     onChangePrefs(false,'fontStyle',currText.fontStyle);
@@ -110,13 +110,12 @@ function updateAllPrefs(line) {
     onChangePrefs(false,'fontStrokeColor',currText.fontStrokeColor);
     onChangePrefs(false,'fontFamily',currText.fontFamily);
     onChangePrefs(false,'fontSize',currText.fontSize);
-    onChangePrefs(false,'horizontalAlignment',currText.horizontalAlignment);
+    onChangePrefs(false,'horAlign',currText.horAlign);
 }
 
 function getTextByLine(line) {
-    const lineIdx = findIdxbyLine(+line);
-    console.log(lineIdx);
-    console.log(gMeme)
+    const lineIdx = findIdxbyLine(line);
+
     return gMeme.txts[lineIdx].text;
 }
 

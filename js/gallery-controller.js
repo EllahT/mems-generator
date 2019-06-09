@@ -61,6 +61,7 @@ function onImageClicked(imgId) {
 
 function filterBy(keyword) {
     showGallery();
+    document.querySelector('.list-filter input').value = '';
     
     const elGallery = document.querySelector('.gallery-images-container');
     
