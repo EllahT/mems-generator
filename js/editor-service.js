@@ -120,9 +120,7 @@ function getTextByLine(line) {
     return gMeme.txts[lineIdx].text;
 }
 
-
-// TODO: fix mobile -> download a bigger pic
-// TODO: keep image proporation on gallery and canvas
+// TODO: fixe edit line
 // TODO: Line dragging
 
 //BONUSE:

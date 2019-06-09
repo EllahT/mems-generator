@@ -117,10 +117,10 @@ li {
 
 .btn {    
     background-color: lightskyblue;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 2px 2px 6px 2px #205263;
     padding: 5px;
-    min-height: 40px;
+    min-height: 30px;
     max-height: max-content;
     margin: 5px;
 }
@@ -131,24 +131,33 @@ li {
 
 }
 
-.btn-small {
-    background-color: lightskyblue;
-    border-radius: 10px;
-    box-shadow: 2px 2px 6px 2px #205263;
-    padding: 5px;
-    min-height: 30px;
-    max-height: max-content;
-    margin: 5px;
-}
-
 .btn-img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
-.btn-small-img {
-    width: 25px;
-    height: 25px;
+@media (min-width: 520px) {
+    .btn {    
+        border-radius: 10px;
+        padding: 5px;
+        min-height: 40px;
+    }
+    
+    .btn-small {
+        border-radius: 10px;
+        padding: 5px;
+        min-height: 30px;
+    }
+    
+    .btn-img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .btn-small-img {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 /* layout */
@@ -221,7 +230,7 @@ li {
     justify-content: center;
     align-items: center;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 1fr 2fr 1fr;
     grid-template-areas: 
     "image-tool-box"
     "list-filter"
@@ -278,9 +287,15 @@ li {
 }
 
 .keyword {
-    margin: 10px;
+    margin: 2px;
     background-color: transparent;
     border: 1px dotted lightcoral;
+}
+
+@media (min-width: 520px) {
+    .keyword {
+        margin: 10px;
+    }
 }
 
 /* actual gallery  */
@@ -349,22 +364,37 @@ li {
 }
 
 .gallery-images-container.image-list > .image-card > .image-name {
-    width: 33%;
+    width: 25%;
 }
 
 .gallery-images-container.image-list > .image-card > .image-keywords {
     max-width: 40%;
     display: flex;
+    align-items: center;
 }
 
 .gallery-images-container.image-list > .image-card img {
-    max-width: 200px;
+    max-width: 100px;
     border-radius: 20px;
 }
 
 .gallery-images-container.grid > .image-card img {
     max-width: 100%;
     border-radius: 20px;
+}
+
+@media (min-width: 520px) {
+    .gallery-images-container.image-list > .image-card > .image-name {
+        width: 33%;
+    }
+    
+    .gallery-images-container.image-list > .image-card > .image-keywords {
+        max-width: 40%;
+    }
+    
+    .gallery-images-container.image-list > .image-card img {
+        max-width: 200px;
+    }
 }
 
 /* editor */

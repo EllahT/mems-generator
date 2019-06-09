@@ -14,9 +14,13 @@ function renderGallery() {
                 <img class="img-${image.id}" src="${image.url}">
                 <div class="image-screen"><h4>Pick this image as your meme background</h4></div>
             </div>
+
+            <div class="big-image">
+                <img class="big-img-${image.id} hide" src="${image.url}">
+            </div>
         
             <div class="image-keywords">
-                <button class="btn keywords-${image.id}" onclick="onshowkeywords(event,'${image.id}')"><img src="img/icons/show-more.png" alt="show/hide keywords"></button>
+                <button class="btn keywords-${image.id}" onclick="onshowkeywords(event,'${image.id}')"><img class="btn-img" src="img/icons/show-more.png" alt="show/hide keywords"></button>
                 <div class="keywords-${image.id} hide">${imageKeywordsHtmls}</div>    
             </div>
         </div>`
@@ -50,7 +54,7 @@ function onKeywordClick(ev, keyword) {
 
 function onImageClicked(imgId) {
     updatePickedImage(imgId);
-    renderCanvas();
+    renderCanvas(gCanvas,gCtx);
     const elEditor = document.querySelector('.editor');
     elEditor.scrollIntoView({alignToTop: true, behavior: "smooth"});
 }

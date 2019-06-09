@@ -11,7 +11,7 @@ function init() {
     initMeme();
     renderFilter();
     renderGallery();
-    renderCanvas();
+    renderCanvas(gCanvas,gCtx);
     onClear();
 }
 
