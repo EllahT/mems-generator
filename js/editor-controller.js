@@ -5,31 +5,33 @@ let gCtx;
 let gBigCanvas;
 let gBigCtx;
 let gIsEditing = true;
+let gImageFromUser;
 
-function renderCanvas(canvas, ctx, isBig = false) {
+function renderCanvas(canvas, ctx, isBig= false) {   
+    let img;
     const imgId = getSelectedImageId();
-    
-    if (imgId !== 'blank') {
-        const img = document.querySelector('img.big-img-' + imgId);
+
+    if (imgId === 'blank') {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    } else {
+        if (imgId === 'user-image') {
+
+            img = gImageFromUser;
+        } else {
+            img = document.querySelector('img.big-img-' + imgId);
+        }
 
         if (isBig === false) {
             const size = getMaxSize(img);
-        
             canvas.width = size.width;
             canvas.height = size.height;
-        
         } else {
-            canvas.width = img.width;
-            canvas.height = img.height;
-        }
+                canvas.width = img.width;
+                canvas.height = img.height;
+            }
         
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    
-    } else {
-    
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);    
-
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);    
     }
 
     const texts = getMemeTexts();
@@ -139,16 +141,21 @@ function updateControlBox(prefType,val) {
         
         elItems.forEach (function (item){
             item.classList = prefType+'-item';
-            if (+item.dataset.value === val) {
-                item.classList.add('input-picked');
+            if (prefType === 'horAlign') {
+                if (+item.dataset.value === val) {
+                    item.classList.add('input-picked');
+                }
+            } else {
+                if (item.dataset.value === val) {
+                    item.classList.add('input-picked');
+                }
             }
+            
         })
     } else { 
         const elInput = document.querySelector('.'+prefType+'-input');
         elInput.value = val;
     }
-    
-    
 }
 
 function onEditLine() {
@@ -225,4 +232,28 @@ function updateAllPrefs(currText) {
     onChangePrefs(false,'fontFamily',currText.fontFamily);
     onChangePrefs(false,'fontSize',currText.fontSize);
     onChangePrefs(false,'horAlign',currText.horAlign);
+}
+
+function onFileInputChange(ev) {
+    handleImageFromInput(ev, selectImageFromUser)
+}
+
+function handleImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    let reader = new FileReader();
+
+    reader.onload = function (event) {
+        let img = new Image();
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result;
+    }
+
+    reader.readAsDataURL(ev.target.files[0]);
+}
+
+function selectImageFromUser(img) {
+    updatePickedImage('user-image');
+    gImageFromUser = img;
+    scrollToSec(false, 'editor');   
+    renderCanvas(gCanvas,gCtx);
 }

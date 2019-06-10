@@ -135,7 +135,6 @@ function savePrefs() {
     saveToStorage(prefsKey, gPrefs);
 }
 
-// TODO: fixe edit line
 // TODO: Line dragging
 
 //BONUSE:

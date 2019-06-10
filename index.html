@@ -30,7 +30,8 @@
             <div class="gallery-tool-box">
 
                 <div class="images-tool-box">
-                    <button class="btn" onclick="onToggleGallery()" title="show/hide gallery"><img class="btn-img" src="img/icons/shrink.png" alt="Show/Hide Gallery" id="gallery-display-changer"></button>
+                    <button class="btn" onclick="onToggleHide('upload-image')" title="upload image from computer"><input type="file" class="upload-image hide" name="image" onchange="onFileInputChange(event)" /><img class="btn-img" src="img/icons/upload.png" alt="Show/Hide Upload From Computer"></button>
+                    <button class="btn" onclick="onToggleGallery()" title="show/hide gallery"><img class="btn-img" src="img/icons/shrink.png" alt="Show/Hide Gallery"></button>
                     <button class="btn" onclick="onChangeGalleryStyle('list')" title="show gallery as list"><img class="btn-img" src="img/icons/image-list.png" alt="Image List"></button>
                     <button class="btn" onclick="onChangeGalleryStyle('grid')" title="show gallery as grid"><img class="btn-img" src="img/icons/gallery.png" alt="Gallery"></button>
                 </div>
@@ -99,9 +100,9 @@
                         <div class="sec-control font-control-box hide">
                             <!-- font style -->
                             <div class="control-box-item">
-                                <div onclick="onToggleHide('dropdown-style')" title="Font Style">
+                                <button class="btn-small" onclick="onToggleHide('dropdown-style')" title="Font Style">
                                     <img class="btn-img" src="img/icons/style.png">
-                                </div>
+                                </button>
                                 <div class="dropdown-content dropdown-style hide">
                                     <a href="#" data-value="filled" class="fontStyle-item input-picked" onclick="onChangePrefs(event,'fontStyle','filled')"><img class="btn-img" src="img/icons/filled.png" alt="filled"></a>
                                     <a href="#" data-value="empty" class="fontStyle-item" onclick="onChangePrefs(event,'fontStyle','empty')"><img class="btn-img" src="img/icons/empty.png" alt="empty"></a>
@@ -110,9 +111,9 @@
 
                             <!-- font size -->
                             <div class="control-box-item">
-                              <div onclick="onToggleHide('dropdown-size')" title="Font Size">
+                              <button class="btn-small" onclick="onToggleHide('dropdown-size')" title="Font Size">
                                     <img class="btn-img" src="img/icons/font-size.png">
-                                </div>
+                              </button>
                                 <div class="dropdown-content dropdown-size hide">
                                     <input class="fontSize-input" type="range" min="1" max="5" value="3" onchange="onChangePrefs(event,'fontSize', this.value)">    
                                 </div>
@@ -120,9 +121,9 @@
 
                             <!-- font family -->
                             <div class="control-box-item">
-                              <div onclick="onToggleHide('dropdown-family')" title="Font Family">
+                              <button class="btn-small" onclick="onToggleHide('dropdown-family')" title="Font Family">
                                     <img class="btn-img" src="img/icons/font-family.png" alt="Font Family">
-                                </div>
+                              </button>
                                 <div class="dropdown-content dropdown-family hide">
                                     <a href="#" data-value="Impact" class="Impact fontFamily-item input-picked" onclick="onChangePrefs(event, 'fontFamily', 'Impact')">Impact</a>
                                     <a href="#" data-value="AbrilFatFace" class="AbrilFatFace fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')">AbrilFatFace</a>
@@ -147,9 +148,9 @@
                         <div class="sec-control colors-control-box hide">
                             <!-- font color -->
                             <div class="control-box-item">
-                                <div onclick="onToggleHide('dropdown-color')" title="Font Color">
+                                <butoon class="btn-small" onclick="onToggleHide('dropdown-color')" title="Font Color">
                                     <img class="btn-img" src="img/icons/color.png">
-                                </div>
+                                </button>
                                 <div class="dropdown-content dropdown-color hide">
                                     <input class="fontFillColor-input" type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
                                 </div>
@@ -157,9 +158,9 @@
 
                             <!-- font-border color -->
                             <div class="control-box-item">
-                              <div onclick="onToggleHide('dropdown-border-color')" title="Font Border Color">
+                              <button class="btn-small" onclick="onToggleHide('dropdown-border-color')" title="Font Border Color">
                                     <img class="btn-img" src="img/icons/border-color.png">
-                                </div>
+                              </button>
                                 <div class="dropdown-content dropdown-border-color hide">
                                     <input class="fontStrokeColor-input" type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
                                 </div>
@@ -174,9 +175,9 @@
                         <div class="sec-control alignment-control-box hide">
                             <!-- oraizonal alignment -->
                             <div class="control-box-item">
-                                <div onclick="onToggleHide('dropdown-alignment')" title="Font Alignment">
+                                <button class="btn-small" onclick="onToggleHide('dropdown-alignment')" title="Font Alignment">
                                     <img class="btn-img" src="img/icons/alignment.png">
-                                </div>
+                                </button>
                                 <div class="dropdown-content dropdown-alignment hide">
                                     <a href="#" data-value="4" class="horAlign-item" onclick="onChangePrefs(event,'horAlign', 4)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
                                     <a href="#" data-value="2" class="horAlign-item" onclick="onChangePrefs(event,'horAlign', 2)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
@@ -186,9 +187,9 @@
 
                             <!-- vertical alignment -->
                             <div class="control-box-item">
-                                <div onclick="onToggleHide('dropdown-vertical-alignment')" title="Font Vertical Alignment">
+                                <button class="btn-small" onclick="onToggleHide('dropdown-vertical-alignment')" title="Font Vertical Alignment">
                                     <img class="btn-img" src="img/icons/vertical-align.png">
-                                </div>
+                                </button>
                                 <div class="dropdown-content dropdown-vertical-alignment hide">
                                     <a href="#" onclick="onChangeVerticalAlignment(event,'-')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
                                     <a href="#" onclick="onChangeVerticalAlignment(event,'+')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
@@ -211,12 +212,19 @@
                 </canvas>
             </div>
 
+            <div class="share-container"></div>
+
             <div class="actions-containor">
                     <button class="btn">
                         <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btn-img" src="img/icons/download.png" alt="Download"></a>
                     </button>
                     
                     <button class="btn" onclick="onClear(this)"><img class="btn-img" src="img/icons/delete.png" alt="Clear Canvas"></button>
+
+                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden"/>
+                        <button class="btn" type="submit">Share</button>
+                      </form>
             </div>
         </section>
 
