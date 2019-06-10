@@ -50,14 +50,14 @@
 
             </div>
 
-            <div class="block-filter">
+            <div class="block-filter hide">
 
                 <div class="tags-container">
 
                 </div>
             </div>
 
-            <div class="gallery-images-container grid">
+            <div class="gallery-images-container grid hide">
 
             </div>
 
@@ -69,7 +69,7 @@
 
                 <div class="texts-container">
                     <div class="input-line">
-                        <h3>you are editing line number <span class="curr-line">1</span></h3>
+                        <h3>you are editing <span class="curr-line">the first line</span></h3>
                         <input class="text-input" onkeyup ="onAddText(event, this, this.value)">
                         <button onclick="onToggleHide('control-box')" class="btn" title="show/hide control box"><img class="btn-img" src="img/icons/settings.png" alt="show/hide control box"></button>
                         <button onclick="onAddLine()" class="btn" title="add line"><img class="btn-img" src="img/icons/add-line.png" alt="add line"></button>
@@ -78,8 +78,6 @@
                     </div>
                 </div>
 
-                
-                
                 <div>
                     <ul class="prefs-list">
                         <li>Font Style <span class="picked fontStyle">Filled</span></li>
@@ -92,107 +90,112 @@
 
                 </div>
 
-                <div class="control-box hide">
+                <div class="control-box">
 
                     <!-- font -->
-                    <div class="sec-control font-control-box">
-                        <h3>Font</h3>
+                    <div class="sec-control-container">
+                        <button class="btn btn-control-box" onclick="onToggleHide('font-control-box')">Font</button>
                         
-                        <!-- font style -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-style')" title="Font Style">
-                                <img class="btn-img" src="img/icons/style.png">
+                        <div class="sec-control font-control-box hide">
+                            <!-- font style -->
+                            <div class="control-box-item">
+                                <div onclick="onToggleHide('dropdown-style')" title="Font Style">
+                                    <img class="btn-img" src="img/icons/style.png">
+                                </div>
+                                <div class="dropdown-content dropdown-style hide">
+                                    <a href="#" data-value="filled" class="fontStyle-item input-picked" onclick="onChangePrefs(event,'fontStyle','filled')"><img class="btn-img" src="img/icons/filled.png" alt="filled"></a>
+                                    <a href="#" data-value="empty" class="fontStyle-item" onclick="onChangePrefs(event,'fontStyle','empty')"><img class="btn-img" src="img/icons/empty.png" alt="empty"></a>
+                                </div>
                             </div>
-                            <div class="dropdown-content dropdown-style hide">
-                                <a href="#" onclick="onChangePrefs(event,'fontStyle','filled')"><img class="btn-img" src="img/icons/filled.png" alt="filled"></a>
-                                <a href="#" onclick="onChangePrefs(event,'fontStyle','empty')"><img class="btn-img" src="img/icons/empty.png" alt="empty"></a>
-                            </div>
-                        </div>
 
-                        <!-- font size -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-size')" title="Font Size">
-                                <img class="btn-img" src="img/icons/font-size.png">
+                            <!-- font size -->
+                            <div class="control-box-item">
+                              <div onclick="onToggleHide('dropdown-size')" title="Font Size">
+                                    <img class="btn-img" src="img/icons/font-size.png">
+                                </div>
+                                <div class="dropdown-content dropdown-size hide">
+                                    <input class="fontSize-input" type="range" min="1" max="5" value="3" onchange="onChangePrefs(event,'fontSize', this.value)">    
+                                </div>
                             </div>
-                            <div class="dropdown-content dropdown-size hide">
-                                <input type="range" min="1" max="5" value="3" onchange="onChangePrefs(event,'fontSize', this.value)">    
-                            </div>
-                        </div>
 
-                        <!-- font family -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-family')" title="Font Family">
-                                <img class="btn-img" src="img/icons/font-family.png" alt="Font Family">
-                            </div>
-                            <div class="dropdown-content dropdown-family hide">
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'impact')" class="impact">impact</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')" class="AbrilFatFace">AbrilFatFace</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Alef')" class="Alef">Alef</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')" class="AlfaSlabOne">AlfaSlabOne</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')" class="Bangers">Bangers</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')" class="KumarOneOutline">KumarOneOutline</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')" class="Monoton">Monoton</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')" class="Righteous">Righteous</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')" class="SecularOne">SecularOne</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')" class="SplecialElite">SplecialElite</a>
-                                <a href="#" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')" class="ZCOOLKuaile">ZCOOLKuaile</a>
+                            <!-- font family -->
+                            <div class="control-box-item">
+                              <div onclick="onToggleHide('dropdown-family')" title="Font Family">
+                                    <img class="btn-img" src="img/icons/font-family.png" alt="Font Family">
+                                </div>
+                                <div class="dropdown-content dropdown-family hide">
+                                    <a href="#" data-value="Impact" class="Impact fontFamily-item input-picked" onclick="onChangePrefs(event, 'fontFamily', 'Impact')">Impact</a>
+                                    <a href="#" data-value="AbrilFatFace" class="AbrilFatFace fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'AbrilFatFace')">AbrilFatFace</a>
+                                    <a href="#" data-value="Alef" class="Alef fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'Alef')">Alef</a>
+                                    <a href="#" data-value="AlfaSlabOne" class="AlfaSlabOne fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'AlfaSlabOne')">AlfaSlabOne</a>
+                                    <a href="#" data-value="Bangers" class="Bangers fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'Bangers')">Bangers</a>
+                                    <a href="#" data-value="KumarOneOutline" class="KumarOneOutline fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'KumarOneOutline')">KumarOneOutline</a>
+                                    <a href="#" data-value="Monoton" class="Monoton fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'Monoton')">Monoton</a>
+                                    <a href="#" data-value="Righteous" class="Righteous fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'Righteous')">Righteous</a>
+                                    <a href="#" data-value="SecularOne" class="SecularOne fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'SecularOne')">SecularOne</a>
+                                    <a href="#" data-value="SplecialElite" class="SplecialElite fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'SplecialElite')">SplecialElite</a>
+                                    <a href="#" data-value="ZCOOLKuaile" class="ZCOOLKuaile fontFamily-item" onclick="onChangePrefs(event, 'fontFamily', 'ZCOOLKuaile')">ZCOOLKuaile</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- colors -->
-                    <div class="sec-control colors-control-box">
-                        <h3>Colors</h3>
+                    <div class="sec-control-container">
+                        <button class="btn btn-control-box" onclick="onToggleHide('colors-control-box')">Colors</button>
                         
-                        <!-- font color -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-color')" title="Font Color">
-                                <img class="btn-img" src="img/icons/color.png">
+                        <div class="sec-control colors-control-box hide">
+                            <!-- font color -->
+                            <div class="control-box-item">
+                                <div onclick="onToggleHide('dropdown-color')" title="Font Color">
+                                    <img class="btn-img" src="img/icons/color.png">
+                                </div>
+                                <div class="dropdown-content dropdown-color hide">
+                                    <input class="fontFillColor-input" type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
+                                </div>
                             </div>
-                            <div class="dropdown-content dropdown-color hide">
-                                <input type="color" onchange="onChangePrefs(event,'fontFillColor', this.value)">
-                            </div>
-                        </div>
 
-                        <!-- font-border color -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-border-color')" title="Font Border Color">
-                                <img class="btn-img" src="img/icons/border-color.png">
-                            </div>
-                            <div class="dropdown-content dropdown-border-color hide">
-                                <input type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
+                            <!-- font-border color -->
+                            <div class="control-box-item">
+                              <div onclick="onToggleHide('dropdown-border-color')" title="Font Border Color">
+                                    <img class="btn-img" src="img/icons/border-color.png">
+                                </div>
+                                <div class="dropdown-content dropdown-border-color hide">
+                                    <input class="fontStrokeColor-input" type="color" onchange="onChangePrefs(event,'fontStrokeColor', this.value)">
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- alignment -->
-                    <div class="sec-control alignment-control-box">
-                        <h3>alignment</h3>
+                    <div class="sec-control-container">
+                        <button class="btn btn-control-box" onclick="onToggleHide('alignment-control-box')">Alignment</button>
 
-                        <!-- oraizonal alignment -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-alignment')" title="Font Alignment">
-                                <img class="btn-img" src="img/icons/alignment.png">
+                        <div class="sec-control alignment-control-box hide">
+                            <!-- oraizonal alignment -->
+                            <div class="control-box-item">
+                                <div onclick="onToggleHide('dropdown-alignment')" title="Font Alignment">
+                                    <img class="btn-img" src="img/icons/alignment.png">
+                                </div>
+                                <div class="dropdown-content dropdown-alignment hide">
+                                    <a href="#" data-value="4" class="horAlign-item" onclick="onChangePrefs(event,'horAlign', 4)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
+                                    <a href="#" data-value="2" class="horAlign-item" onclick="onChangePrefs(event,'horAlign', 2)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
+                                    <a href="#" data-value="1" class="horAlign-item input-picked" onclick="onChangePrefs(event,'horAlign', 1)"><img class="btn-img" src="img/icons/align-left.png" alt="left"></a>
+                                </div>
                             </div>
-                            <div class="dropdown-content dropdown-alignment hide">
-                                <a href="#" onclick="onChangePrefs(event,'horAlign', 4)"><img class="btn-img" src="img/icons/align-right.png" alt="right"></a>
-                                <a href="#" onclick="onChangePrefs(event,'horAlign', 2)"><img class="btn-img" src="img/icons/align-center.png" alt="center"></a>
-                                <a href="#" onclick="onChangePrefs(event,'horAlign', 1)"><img class="btn-img" src="img/icons/align-left.png" alt="left"></a>
-                            </div>
-                        </div>
 
-                        <!-- vertical alignment -->
-                        <div class="control-box-item">
-                            <div onclick="onToggleHide('dropdown-vertical-alignment')" title="Font Vertical Alignment">
-                                <img class="btn-img" src="img/icons/vertical-align.png">
-                            </div>
-                            <div class="dropdown-content dropdown-vertical-alignment hide">
-                                <a href="#" onclick="onChangeVerticalAlignment(event,'-')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
-                                <a href="#" onclick="onChangeVerticalAlignment(event,'+')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
+                            <!-- vertical alignment -->
+                            <div class="control-box-item">
+                                <div onclick="onToggleHide('dropdown-vertical-alignment')" title="Font Vertical Alignment">
+                                    <img class="btn-img" src="img/icons/vertical-align.png">
+                                </div>
+                                <div class="dropdown-content dropdown-vertical-alignment hide">
+                                    <a href="#" onclick="onChangeVerticalAlignment(event,'-')"><img class="btn-img" src="img/icons/up.png" alt="up"></a>
+                                    <a href="#" onclick="onChangeVerticalAlignment(event,'+')"><img class="btn-img" src="img/icons/down.png" alt="down"></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

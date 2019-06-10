@@ -13,10 +13,11 @@ function init() {
     renderGallery();
     renderCanvas(gCanvas,gCtx);
     onClear();
+    updateAllPrefs(gPrefs);
 }
 
 function scrollToSec(event, className) {
     if (event !== false) event.preventDefault();
     const elScrollTo = document.querySelector('.'+className);
-    elScrollTo.scrollIntoView({behavior: "smooth", block: "center"});
+    elScrollTo.scrollIntoView({behavior: "smooth"});
 }

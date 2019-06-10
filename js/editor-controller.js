@@ -67,7 +67,7 @@ function onAddText(ev, el, txt) {
     let currFontSize = getCurrPrefs('fontSize');
     let currFontFamily = getCurrPrefs('fontFamily');
     let currFontStyle = getCurrPrefs('fontStyle');
-    let currHorAlign = getCurrPrefs('horizontalAlignment');
+    let currHorAlign = getCurrPrefs('horAlign');
     
     if (isThereLine(line) && gIsEditing === false) {
         if (confirm('you are trying to edit line number '+line+' to switch what\'s in it, click OK')) {
@@ -85,10 +85,10 @@ function onAddText(ev, el, txt) {
 
     if (ev.key === 'Backspace') {
         renderCanvas(gCanvas,gCtx);
-        updateText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
+        updateTextObj(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
     }
 
-    updateText(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
+    updateTextObj(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
     renderCanvas(gCanvas,gCtx);
 }
 
@@ -114,10 +114,12 @@ function doAddText(canvas,ctx,currFontStyle, currFontFillColor, currFontStrokeCo
 
 function onChangePrefs(ev, prefType, val) {
     if (ev !== false) ev.preventDefault();
-    const elPicked = document.querySelector('.'+prefType);
+    const elPicked = document.querySelector('.picked.'+prefType);
     elPicked.innerText = val;
     
     updatePrefs(prefType, val);
+    updateControlBox(prefType,val);
+    renderCanvas(gCanvas,gCtx);
 }
 
 function onChangeVerticalAlignment(ev, direction) {
@@ -125,10 +127,28 @@ function onChangeVerticalAlignment(ev, direction) {
 
     changeVerticalAlignment(direction);
     const val = getCurrPrefs('line');
-    const elPicked = document.querySelector('.line');
+    const elPicked = document.querySelector('.curr-line');
     elPicked.innerText = val;
 
     renderCanvas(gCanvas,gCtx);
+}
+
+function updateControlBox(prefType,val) {
+    if (prefType === 'fontStyle' || prefType === 'fontFamily' || prefType === 'horAlign') {
+        const elItems = document.querySelectorAll('.'+prefType+'-item');        
+        
+        elItems.forEach (function (item){
+            item.classList = prefType+'-item';
+            if (+item.dataset.value === val) {
+                item.classList.add('input-picked');
+            }
+        })
+    } else { 
+        const elInput = document.querySelector('.'+prefType+'-input');
+        elInput.value = val;
+    }
+    
+    
 }
 
 function onEditLine() {
@@ -146,17 +166,17 @@ function onEditLine() {
     const elInput = document.querySelector('.text-input');
     elInput.value = lineText;
 
-    updateAllPrefs(line);
+    updateAllPrefs(getTextObjByLine(line));
     updateCurrLine(line);
     updateCurrLineSpanAndFocus(line);
-    deleteLine(line);
+    // deleteLine(line);
 }
 
 function updateCurrLineSpanAndFocus(newLine) {
     const elCurrLine = document.querySelector('.curr-line');
-    elCurrLine.innerText = newLine;
+    elCurrLine.innerText = (newLine === 1)? 'the first line' : (newLine === 5)? 'the last line' : 'line number ' +newLine;
 
-    document.querySelector(".text-input").focus();
+    document.querySelector('.text-input').focus();
 }
 
 function onAddLine() {
@@ -173,11 +193,7 @@ function onAddLine() {
 
     updateCurrLine(newLine);
     updateCurrLineSpanAndFocus(newLine);
-}
-
-function doAddLine() {
-    const currLines = getCurrLinesCount();
-    
+    document.querySelector('.text-input').value = '';
 }
 
 function onDeleteLine() {
@@ -200,4 +216,13 @@ function getMaxSize(img) {
     }
 
     return {width: currWidth, height: currHeight};
+}
+
+function updateAllPrefs(currText) {
+    onChangePrefs(false,'fontStyle',currText.fontStyle);
+    onChangePrefs(false,'fontFillColor',currText.fontFillColor);
+    onChangePrefs(false,'fontStrokeColor',currText.fontStrokeColor);
+    onChangePrefs(false,'fontFamily',currText.fontFamily);
+    onChangePrefs(false,'fontSize',currText.fontSize);
+    onChangePrefs(false,'horAlign',currText.horAlign);
 }

@@ -72,6 +72,7 @@ body {
 h1 {
     text-align: center;
     font-family: 'impact';
+    margin: 0;
 }
 
 h2 {
@@ -79,8 +80,7 @@ h2 {
 }
 
 h3 {
-    margin: 0;
-    width: 100%;
+    margin: 5px;
 }
 
 h6 {
@@ -164,7 +164,7 @@ li {
 
 .header {
     max-height: 100px;
-    margin: 30px 0;
+    margin: 40px 0 0;
 }
 
 .main {
@@ -187,7 +187,7 @@ li {
     right: 0;
     background-color: #296763de;
     margin: 0;
-    padding: 0 5px;
+    padding: 0 20px;
     width: 100vw;
     z-index: 10;
 }
@@ -414,6 +414,9 @@ li {
 }
 
 /* control box */
+.control-box-container {
+    position: relative;
+}
 
 .prefs-list {
     list-style-type: none;
@@ -437,11 +440,22 @@ li {
     font-weight: bold;
 }
 
+.input-picked {
+    color: #E91E63;
+}
+
+.input-picked > img {
+    border: 1px solid #E91E63;
+}
+
 .control-box {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 90vw;
+    position: absolute;
+    top: auto;
+    left: 0;
+    z-index: 10;
+    align-items: start;
 }
 
 .control-box-item {
@@ -450,18 +464,30 @@ li {
     margin: 10px;
 }
 
-.sec-control {
+.sec-control-container {
     display: grid;
-    grid-template-columns: 2fr repeat(3, 3fr);
-    background-color: #29676363;
-    margin: 5px 0;
-    border-radius: 10px;
-    min-width: 70vw;
-    padding: 5px;
+    grid-template-columns: minmax(90px, 1fr) 1fr;
 }
 
-.sec-control > h3 {
-    width: 20%;
+.sec-control {
+    display: grid;
+    min-width: 50vw;
+    background-color: #29676363;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.font-control-box {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.colors-control-box, .alignment-control-box {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.btn-control-box {
+    max-width: min-content;
+    max-height: 40px;
 }
 
 .input-line {
@@ -473,38 +499,6 @@ li {
 
 .text {
     border: 0;
-}
-
-.font-style {
-    grid-area: style;
-}
-
-.font-color {
-    grid-area: color;
-}
-
-.font-border-color {
-    grid-area: border;
-}
-
-.font-size {
-    grid-area: size;
-}
-
-.font-family {
-    grid-area: family;
-}
-
-.alignment {
-    grid-area: alignment;
-}
-
-.vertical-alignment {
-    grid-area: vertical;
-}
-
-.delete {
-    grid-area: delete;
 }
 
 .dropdown-content {

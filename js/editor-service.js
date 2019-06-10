@@ -1,4 +1,5 @@
 'use strict'
+const prefsKey = 'userMemePrefs';
 
 let gPrefs;
 
@@ -9,23 +10,29 @@ function initMeme() {
         selectedImgId: 'blank',
         txts: []
     }
-    gPrefs = {
-        fontStyle: 'filled',
-        fontFillColor: 'white',
-        fontStrokeColor: 'black',
-        fontFamily: 'impact',
-        fontSize: '3',
-        horizontalAlignment: 1,
-        line: 1
-    }
-}
+    
+    let prefs = loadFromStorage(prefsKey);
 
-function updatePickedImage(imgId) {
-    gMeme.selectedImgId = imgId;
+    if (!prefs) {
+        gPrefs = {
+            fontStyle: 'filled',
+            fontFillColor: '#ffffff',
+            fontStrokeColor: '#000000',
+            fontFamily: 'Impact',
+            fontSize: '3',
+            horAlign: 1,
+        }
+    } else gPrefs = prefs;
+
+    gPrefs.line = 1;
 }
 
 function getSelectedImageId() {
     return gMeme.selectedImgId;
+}
+
+function updatePickedImage(imgId) {
+    gMeme.selectedImgId = imgId;
 }
 
 function getCurrPrefs(prefType = 'all') {
@@ -34,9 +41,17 @@ function getCurrPrefs(prefType = 'all') {
 
 function updatePrefs(prefType, val) {
     gPrefs[prefType] = val;
+    
+    const currText = getTextObjByLine(getCurrLine());
+
+    if (currText) {
+        currText[prefType] = val;
+    }
+
+    savePrefs();
 }
 
-function updateText(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,currHorAlign,line,txt) {   
+function updateTextObj(currFontStyle,currFontFillColor,currFontStrokeColor,currFontSize,currFontFamily,currHorAlign,line,txt) {   
     const newText = {
         fontStyle: currFontStyle,
         fontFillColor: currFontFillColor,
@@ -93,6 +108,7 @@ function changeVerticalAlignment(direction) {
     }
     
     gPrefs.line = newLine;
+    savePrefs();
 }
 
 function updateCurrLine(line) {
@@ -103,22 +119,20 @@ function getCurrLine() {
     return gPrefs.line;
 }
 
-function updateAllPrefs(line) {
-    const lineIdx = findIdxbyLine(line);
-    const currText = gMeme.txts[lineIdx];
-
-    onChangePrefs(false,'fontStyle',currText.fontStyle);
-    onChangePrefs(false,'fontFillColor',currText.fontFillColor);
-    onChangePrefs(false,'fontStrokeColor',currText.fontStrokeColor);
-    onChangePrefs(false,'fontFamily',currText.fontFamily);
-    onChangePrefs(false,'fontSize',currText.fontSize);
-    onChangePrefs(false,'horAlign',currText.horAlign);
-}
-
 function getTextByLine(line) {
     const lineIdx = findIdxbyLine(line);
 
     return gMeme.txts[lineIdx].text;
+}
+
+function getTextObjByLine(line) {
+    const lineIdx = findIdxbyLine(line);
+
+    return gMeme.txts[lineIdx];
+}
+
+function savePrefs() {
+    saveToStorage(prefsKey, gPrefs);
 }
 
 // TODO: fixe edit line
@@ -132,5 +146,3 @@ function getTextByLine(line) {
 // 5. Option to drag and drop captions & props (also on mobile)
 // 6. Use the new Web Share API to share your meme
 // 7. i18n for Hebrew 
-
-
