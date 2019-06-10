@@ -6,7 +6,6 @@ let gBigCanvas;
 let gBigCtx;
 let gIsEditing = true;
 let gImageFromUser;
-let gDraggingLine;
 
 function renderCanvas(canvas = gCanvas, ctx = gCtx, isBig= false) {   
     let img;
@@ -259,48 +258,3 @@ function selectImageFromUser(img) {
     scrollToSec(false, 'editor');   
     renderCanvas();
 }
-
-function checkLine(y) {    
-    const ratio = gCanvas.height/6;
-    
-    let line = -1;
-    
-    for (let i = 1; i < 6; i++) {
-        if (y > ratio*(i-1) && y < ratio*i) {
-            line = i;
-            break;
-        }
-    }
-
-    return line;
-}
-
-function onEditByClick(ev) {
-    if (gDraggingLine) return;
-    
-    const {offsetY} = ev;
-    const line = checkLine(offsetY);
-    doEditLine(line);
-}
-
-function onStartDraging(ev) {
-    if (gDraggingLine) return;
-    const {offsetY} = ev;
-    const line = checkLine(offsetY);
-    updateCurrLine(line);
-    gDraggingLine = line;
-}
-
-function onDragging(ev) {
-    if (!gDraggingLine) return;
-    const {offsetX, offsetY} = ev;
-    updatePrefs('actualX',offsetX);
-    updatePrefs('actualY',offsetY);
-    renderCanvas();
-}
-
-function onStopDraging() {
-    
-    gDraggingLine = null;
-}
-
