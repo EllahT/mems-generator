@@ -135,11 +135,7 @@ function savePrefs() {
     saveToStorage(prefsKey, gPrefs);
 }
 
-// TODO: Line dragging
-
 //BONUSE:
-// 1. Allow using an image from your computer
-// 2. Share on Facebook (use the sample code provided)
 // 3. Website theme: celeb-meme, politic-meme, ani-meme, kid-meme, mondealmeme
 // 4. Add props (sunglasses, hats, etc)
 // 5. Option to drag and drop captions & props (also on mobile)

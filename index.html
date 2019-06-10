@@ -201,7 +201,7 @@
             </div>
 
             <div class="canvas-container">
-                <canvas class="meme">
+                <canvas class="meme" onclick="checkLine(event)" onmousedown="startDraging(event)" >
 
                 </canvas>
             </div>
@@ -212,8 +212,6 @@
                 </canvas>
             </div>
 
-            <div class="share-container"></div>
-
             <div class="actions-containor">
                     <button class="btn">
                         <a href="#" onclick="onDownload(this)" return=false; download=""><img class="btn-img" src="img/icons/download.png" alt="Download"></a>
@@ -223,9 +221,14 @@
 
                     <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden"/>
-                        <button class="btn" type="submit">Share</button>
+                        <button class="btn" type="submit">Share To Facebook</button>
                       </form>
             </div>
+
+            <div class="share-container">
+
+            </div>
+
         </section>
 
     </main>
@@ -239,6 +242,7 @@
     <script src="js/editor-controller.js"></script>
     <script src="js/gallery-service.js"></script>
     <script src="js/editor-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/util-service.js"></script>
 </body>
 

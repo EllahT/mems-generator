@@ -110,8 +110,6 @@ function doAddText(canvas,ctx,currFontStyle, currFontFillColor, currFontStrokeCo
     } else {
         ctx.strokeText(txt, x, y);
     }
-
-    scrollToSec(false,'meme');
 }
 
 function onChangePrefs(ev, prefType, val) {
@@ -160,9 +158,12 @@ function updateControlBox(prefType,val) {
 
 function onEditLine() {
     const lineStr = prompt('which line do you want to edit? (1-5)');
-    gIsEditing = true;
-
     const line = parseInt(lineStr);
+    doEditLine(line);
+}
+
+function doEditLine(line) {
+    gIsEditing = true;
 
     if (findIdxbyLine(line) === -1) {
         alert('there is nothing there! add this line first');
@@ -176,7 +177,6 @@ function onEditLine() {
     updateAllPrefs(getTextObjByLine(line));
     updateCurrLine(line);
     updateCurrLineSpanAndFocus(line);
-    // deleteLine(line);
 }
 
 function updateCurrLineSpanAndFocus(newLine) {
@@ -256,4 +256,20 @@ function selectImageFromUser(img) {
     gImageFromUser = img;
     scrollToSec(false, 'editor');   
     renderCanvas(gCanvas,gCtx);
+}
+
+function checkLine(ev) {
+    const {offsetX, offsetY} = ev;
+    const ratio = gCanvas.height/6;
+    
+    let line = -1;
+    
+    for (let i = 1; i < 6; i++) {
+        if (offsetY > ratio*(i-1) && offsetY < ratio*i) {
+            line = i;
+            break;
+        }
+    }
+
+    doEditLine(line);
 }

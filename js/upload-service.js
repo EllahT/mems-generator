@@ -1,20 +1,21 @@
-
-
-
 // on submit call to this function
 function uploadImg(elForm, ev) {
     ev.preventDefault();
 
-    document.getElementById('imgData').value = canvas.toDataURL("image/jpeg");
+    gBigCanvas = document.querySelector('.big-canvas');
+    gBigCtx = gBigCanvas.getContext('2d');
+
+    renderCanvas(gBigCanvas,gBigCtx,true);
+
+    document.getElementById('imgData').value = gBigCanvas.toDataURL("image/jpeg");
    
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
-        console.log('uploadedImgUrl', uploadedImgUrl);
 
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         document.querySelector('.share-container').innerHTML = `
         <a class="w-inline-block social-share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-           Share   
+           <button class="btn">Click Me To Share</button>   
         </a>`
     }
 
@@ -36,9 +37,6 @@ function doUploadImg(elForm, onSuccess) {
         console.error(error)
     })
 }
-
-
-
 
 // facebook api
 (function(d, s, id) {
