@@ -6,6 +6,8 @@ let gKeywords = {};
 
 let gImgs;
 
+let gSearchesMap = {};
+
 function createImages() {
     const images = [
         createImage('Sounds of Music',1,['happy','free','fun','hils']),
@@ -35,7 +37,7 @@ function createImage(name,fileName,keywords) {
     return img;
 }
 
-function getKeywords() {
+function getKeywordsByOccurence() {
     let keywordsMapByCount = gImgs.reduce(function(acc,img) {
         img.keywords.reduce(function(subAcc,keyword) {
             (subAcc[keyword])? subAcc[keyword]++ : subAcc[keyword] = 1;
@@ -46,6 +48,10 @@ function getKeywords() {
 
     gKeywords = keywordsMapByCount;
     return gKeywords;
+}
+
+function getKeywords() {
+    return gSearchesMap;
 }
 
 function getImages() {
@@ -65,6 +71,10 @@ function getImages() {
 
 function updateFilter(keyword) {
     gFilter = keyword;
+    (gSearchesMap[keyword])? gSearchesMap[keyword]++ : gSearchesMap[keyword] = 1;
+
+    saveToStorage('searchMap',gSearchesMap);
+    renderBlockFilter();
 }
 
 function getImageKeywords(image) {

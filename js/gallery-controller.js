@@ -108,21 +108,28 @@ function renderFilter() {
 }
 
 function renderBlockFilter() {
-    const keywordsObj = getKeywords();
+    const keywordsObj = loadFromStorage('searchMap');
+    
+    if (!keywordsObj) getKeywords();
+
     const elList = document.querySelector('.block-filter .tags-container');
 
-    const keywordsArr = Object.entries(keywordsObj);
+    if (keywordsObj) {
+        const keywordsArr = Object.entries(keywordsObj);
 
     let strHtmls = keywordsArr.map(function (keyword) {
-
+        if (keyword[0] === 'all') return;
         return `<button class="filter-item" style="font-size:${keyword[1] * 0.8}rem" onclick="onKeywordClick(event,'${keyword[0]}')">${keyword[0]}</button>`
     })
 
     elList.innerHTML = strHtmls.join('');
+    }
+
+    
 }
 
 function renderListFilter() {
-    const keywordsObj = getKeywords();
+    const keywordsObj = getKeywordsByOccurence();
     const elList = document.querySelector('.list-filter #keywords');
 
     const keywordsArr = Object.keys(keywordsObj);
