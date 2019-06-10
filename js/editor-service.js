@@ -60,6 +60,8 @@ function updateTextObj(currFontStyle,currFontFillColor,currFontStrokeColor,currF
         fontSize: currFontSize,
         horAlign: currHorAlign,
         line: line,
+        actualX: null,
+        actualY: null,
         text: txt,
     }
     

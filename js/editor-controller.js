@@ -6,8 +6,9 @@ let gBigCanvas;
 let gBigCtx;
 let gIsEditing = true;
 let gImageFromUser;
+let gDraggingLine;
 
-function renderCanvas(canvas, ctx, isBig= false) {   
+function renderCanvas(canvas = gCanvas, ctx = gCtx, isBig= false) {   
     let img;
     const imgId = getSelectedImageId();
 
@@ -38,7 +39,16 @@ function renderCanvas(canvas, ctx, isBig= false) {
     
     if (texts.length > 0) {
         texts.forEach(function(text){
-            doAddText(canvas,ctx,text.fontStyle, text.fontFillColor, text.fontStrokeColor, text.fontSize, text.fontFamily, text.horAlign, text.line, text.text)
+
+            if (text.actualX && text.actualY) {
+                doAddText(canvas,ctx,text.fontStyle, text.fontFillColor, text.fontStrokeColor, text.fontSize, text.fontFamily, text.actualX, text.actualY, text.text);
+            } else {
+                let x = ((canvas.width/5)*text.horAlign);
+                let y = (canvas.height/6)*text.line;
+                doAddText(canvas,ctx,text.fontStyle, text.fontFillColor, text.fontStrokeColor, text.fontSize, text.fontFamily, x, y, text.text);
+            }
+
+            
         })
     }
 }
@@ -64,17 +74,17 @@ function onClear() {
 function onAddText(ev, el, txt) {
     
     const line = getCurrPrefs('line');
-    let currFontFillColor = getCurrPrefs('fontFillColor');
-    let currFontStrokeColor = getCurrPrefs('fontStrokeColor');
-    let currFontSize = getCurrPrefs('fontSize');
-    let currFontFamily = getCurrPrefs('fontFamily');
-    let currFontStyle = getCurrPrefs('fontStyle');
-    let currHorAlign = getCurrPrefs('horAlign');
+    const currFontFillColor = getCurrPrefs('fontFillColor');
+    const currFontStrokeColor = getCurrPrefs('fontStrokeColor');
+    const currFontSize = getCurrPrefs('fontSize');
+    const currFontFamily = getCurrPrefs('fontFamily');
+    const currFontStyle = getCurrPrefs('fontStyle');
+    const currHorAlign = getCurrPrefs('horAlign');
     
     if (isThereLine(line) && gIsEditing === false) {
         if (confirm('you are trying to edit line number '+line+' to switch what\'s in it, click OK')) {
             deleteLine(line)
-            renderCanvas(gCanvas,gCtx);
+            renderCanvas();
         } else return;
     }
 
@@ -83,26 +93,23 @@ function onAddText(ev, el, txt) {
     if (ev.key === 'Enter') {
         el.value = '';
         gIsEditing = false;
+        onAddLine();
     }
 
     if (ev.key === 'Backspace') {
-        renderCanvas(gCanvas,gCtx);
+        renderCanvas();
         updateTextObj(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
     }
 
     updateTextObj(currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt);
-    renderCanvas(gCanvas,gCtx);
+    renderCanvas();
 }
 
-function doAddText(canvas,ctx,currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, currHorAlign, line, txt) {
-    let x = ((canvas.width/5)*currHorAlign);
-
-    let y = (canvas.height/6)*line;
+function doAddText(canvas,ctx,currFontStyle, currFontFillColor, currFontStrokeColor, currFontSize, currFontFamily, x, y, txt) {
 
     ctx.fillStyle = currFontFillColor;
     ctx.strokeStyle = currFontStrokeColor;
-    const str = (canvas.height/25*currFontSize) + 'px ' + currFontFamily;
-    ctx.font = str;
+    ctx.font = (canvas.height/25*currFontSize) + 'px ' + currFontFamily;
 
     if (currFontStyle === 'filled') {
         ctx.fillText(txt, x, y);
@@ -119,7 +126,7 @@ function onChangePrefs(ev, prefType, val) {
     
     updatePrefs(prefType, val);
     updateControlBox(prefType,val);
-    renderCanvas(gCanvas,gCtx);
+    renderCanvas();
 }
 
 function onChangeVerticalAlignment(ev, direction) {
@@ -130,7 +137,7 @@ function onChangeVerticalAlignment(ev, direction) {
     const elPicked = document.querySelector('.curr-line');
     elPicked.innerText = val;
 
-    renderCanvas(gCanvas,gCtx);
+    renderCanvas();
 }
 
 function updateControlBox(prefType,val) {
@@ -164,11 +171,6 @@ function onEditLine() {
 
 function doEditLine(line) {
     gIsEditing = true;
-
-    if (findIdxbyLine(line) === -1) {
-        alert('there is nothing there! add this line first');
-        return;
-    }
     
     const lineText = getTextByLine(line);
     const elInput = document.querySelector('.text-input');
@@ -207,7 +209,7 @@ function onDeleteLine() {
     const line = getCurrLine();
     if (confirm('you are trying to delete line number '+line+' are you sure?')) {
         deleteLine(line)
-        renderCanvas(gCanvas,gCtx);
+        renderCanvas();
     } else return;
 }
 
@@ -255,21 +257,50 @@ function selectImageFromUser(img) {
     updatePickedImage('user-image');
     gImageFromUser = img;
     scrollToSec(false, 'editor');   
-    renderCanvas(gCanvas,gCtx);
+    renderCanvas();
 }
 
-function checkLine(ev) {
-    const {offsetX, offsetY} = ev;
+function checkLine(y) {    
     const ratio = gCanvas.height/6;
     
     let line = -1;
     
     for (let i = 1; i < 6; i++) {
-        if (offsetY > ratio*(i-1) && offsetY < ratio*i) {
+        if (y > ratio*(i-1) && y < ratio*i) {
             line = i;
             break;
         }
     }
 
+    return line;
+}
+
+function onEditByClick(ev) {
+    if (gDraggingLine) return;
+    
+    const {offsetY} = ev;
+    const line = checkLine(offsetY);
     doEditLine(line);
 }
+
+function onStartDraging(ev) {
+    if (gDraggingLine) return;
+    const {offsetY} = ev;
+    const line = checkLine(offsetY);
+    updateCurrLine(line);
+    gDraggingLine = line;
+}
+
+function onDragging(ev) {
+    if (!gDraggingLine) return;
+    const {offsetX, offsetY} = ev;
+    updatePrefs('actualX',offsetX);
+    updatePrefs('actualY',offsetY);
+    renderCanvas();
+}
+
+function onStopDraging() {
+    
+    gDraggingLine = null;
+}
+

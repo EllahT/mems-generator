@@ -31,7 +31,7 @@
 
                 <div class="images-tool-box">
                     <button class="btn" onclick="onToggleHide('upload-image')" title="upload image from computer"><input type="file" class="upload-image hide" name="image" onchange="onFileInputChange(event)" /><img class="btn-img" src="img/icons/upload.png" alt="Show/Hide Upload From Computer"></button>
-                    <button class="btn" onclick="onToggleGallery()" title="show/hide gallery"><img class="btn-img" src="img/icons/shrink.png" alt="Show/Hide Gallery"></button>
+                    <button class="btn" onclick="onToggleGallery()" title="show/hide gallery"><img class="btn-img" src="img/icons/enlarge.png" alt="Show/Hide Gallery" id="gallery-display-changer"></button>
                     <button class="btn" onclick="onChangeGalleryStyle('list')" title="show gallery as list"><img class="btn-img" src="img/icons/image-list.png" alt="Image List"></button>
                     <button class="btn" onclick="onChangeGalleryStyle('grid')" title="show gallery as grid"><img class="btn-img" src="img/icons/gallery.png" alt="Gallery"></button>
                 </div>
@@ -201,7 +201,7 @@
             </div>
 
             <div class="canvas-container">
-                <canvas class="meme" onclick="checkLine(event)" onmousedown="startDraging(event)" >
+                <canvas class="meme" onclick="onEditByClick(event)" onmousedown="onStartDraging(event)" onmousemove="onDragging(event)" onmouseup="onStopDraging()" >
 
                 </canvas>
             </div>
