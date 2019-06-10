@@ -471,7 +471,7 @@ li {
 .sec-control {
     display: grid;
     min-width: 50vw;
-    background-color: #296763;
+    background-color: #296763ad;
     border-radius: 10px;
     transition: 0.4s;
 }
@@ -482,6 +482,11 @@ li {
 
 .colors-control-box, .alignment-control-box {
     grid-template-columns: repeat(2, 1fr);
+}
+
+.colors-control-box input {
+    width: 20px;
+    height: 20px;
 }
 
 .btn-control-box {
